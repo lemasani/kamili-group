@@ -40,6 +40,9 @@ nav  ul li a {
     color: black;
     padding: 4px 0;
     transition: 0.5s;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-family: verdana, sans-serif;
   }
 nav  ul li a::after {
     position: absolute;
