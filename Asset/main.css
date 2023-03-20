@@ -9,7 +9,7 @@
 
 /* header */
 .header{
-    background-color: white;
+    background-color: rgb(57, 57, 57);
     border: 1px solid black;
     height: 90px;
     width: 100%;
@@ -37,7 +37,7 @@ nav  ul li a {
     position: relative;
     display: block;
     text-decoration: none;
-    color: black;
+    color: white;
     padding: 4px 0;
     transition: 0.5s;
     font-size: 15px;
@@ -66,13 +66,15 @@ nav ul li a:hover::after {
 .contact-btn{
     padding: 15px ;
     align-items: center;
-    background-color: #ccae6f;
-    border: none;
+    background-color: inherit;
+    border: 2px solid #ccae6f;
     border-radius: 18px;
     color: white;
     width: 180px;
 }
 .contact-btn:hover{
-    background-color: black;
+    background-color: #ccae6f;
     transition: 1.5s all ease-in;
 }
+
+/* mobile nav view */
