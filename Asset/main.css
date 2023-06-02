@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 *{
     padding: 0;
     margin: 0;
@@ -66,15 +67,16 @@ nav ul li a:hover::after {
 .contact-btn{
     padding: 15px ;
     align-items: center;
-    background-color: inherit;
+    background-color: #ccae6f;
     border: 2px solid #ccae6f;
     border-radius: 18px;
-    color: white;
+    color: black;
     width: 180px;
 }
 .contact-btn:hover{
-    background-color: #ccae6f;
+    background-color: #e3ca93;
     transition: 1.5s all ease-in;
+    cursor: pointer;
 }
 
 .ham-menu{
@@ -145,15 +147,80 @@ nav ul li a:hover::after {
     .contact-btn{
         padding: 10px ;
         align-items: center;
-        background-color: inherit;
+        background-color: #ccae6f;
         border: 2px solid #ccae6f;
         border-radius: 18px;
-        color: white;
+        color: black;
         width: 70px;
         font-size: 8px;
     }
     .contact-btn:hover{
-        background-color: #ccae6f;
+        background-color: #e3ca93;
         transition: 1.5s all ease-in;
+        cursor: pointer;
+    }
+}
+
+/* css for home page */
+.home{
+    position: relative;
+    top: 90px;
+    height: 100%;
+    background-image: url("img/kamili-1.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+}
+.container-wrapper{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: #000000;
+    opacity: 0.8;
+}
+
+.home-wrapper{
+    position: relative;
+    top: 150px;
+    z-index: 2;
+}
+.home-wrapper > h1{
+    color: white;
+    font-size: 160px;
+    font-family: "poppins";
+}
+.home-wrapper > p{
+    color: #95a5a6;
+    font-size: 30px;
+    font-style: italic;
+    font-family: "poppins";
+}
+.home-wrapper > a{
+    position: relative;
+    top: 20px;
+    padding: 10px;
+    background-color: #ccae6f;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 10px;
+}
+.home-wrapper > a:hover{
+    cursor: pointer;
+    background-color: #e3ca93;
+    color: #000000;
+    transition: 1s all;
+}
+/* mobile view for home page */
+@media screen and (max-width: 724px){
+    .home-wrapper{
+        position: relative;
+        top: 20px;
+    }
+    .home-wrapper > h1 {
+        font-size: 85px;
+    }
+    .home-wrapper > p{
+        font-size: 21px;
     }
 }
