@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Phone, Clock, MapPin, Eye } from "lucide-react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 import homebanner from "../assets/home-banner.jpg"
 import { TextRoll } from "./ui/text-roll"
@@ -26,6 +26,10 @@ const navItems: NavItem[] = [
 export default function KamiliHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const location = useLocation()
+
+  // Check if current route is home
+  const isHomePage = location.pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -120,11 +124,13 @@ export default function KamiliHeader() {
                   key={item.name}
                   to={item.href}
                   className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-                    item.isActive ? "text-amber-500" : "text-slate-700 hover:text-amber-500"
+                    location.pathname === item.href 
+                      ? "text-amber-500" 
+                      : "text-slate-700 hover:text-amber-500"
                   }`}
                 >
                   {item.name}
-                  {item.isActive && (
+                  {location.pathname === item.href && (
                     <motion.div
                       className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-500"
                       layoutId="navbar-underline"
@@ -167,7 +173,7 @@ export default function KamiliHeader() {
                       <Link
                         to={item.href}
                         className={`block px-4 py-3 text-sm font-medium transition-colors duration-200 ${
-                          item.isActive
+                          location.pathname === item.href
                             ? "bg-amber-50 text-amber-500"
                             : "text-slate-700 hover:bg-slate-50 hover:text-amber-500"
                         }`}
@@ -184,32 +190,34 @@ export default function KamiliHeader() {
         </div>
       </motion.header>
 
-      {/* Hero Section with Background Image */}
-      <div className="relative h-[600px] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${homebanner})`,
-          }}
-        >
-          <div className="absolute inset-0 bg-black/20"></div>
-        </div>
-        <div className="relative z-10 flex h-full items-center justify-center">
-          <div className="text-center text-white">
-            <TextRoll className="text-4xl md:text-5xl font-bold tracking-tight">
+      {/* Hero Section with Background Image - Only show on home page */}
+      {isHomePage && (
+        <div className="relative h-[600px] overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url(${homebanner})`,
+            }}
+          >
+            <div className="absolute inset-0 bg-black/20"></div>
+          </div>
+          <div className="relative z-10 flex h-full items-center justify-center">
+            <div className="text-center text-white">
+              <TextRoll className="text-4xl md:text-5xl font-bold tracking-tight">
                 Build with Kamili Group
-            </TextRoll>
-            <motion.p
-              className="mt-4 text-lg md:text-xl"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Creating lasting structures with trust and quality
-            </motion.p>
+              </TextRoll>
+              <motion.p
+                className="mt-4 text-lg md:text-xl"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                Creating lasting structures with trust and quality
+              </motion.p>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }
