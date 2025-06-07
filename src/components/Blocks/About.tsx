@@ -15,6 +15,7 @@ import {
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
 import { Badge } from "../ui/badge"
+import { AnimatedNumber } from "../ui/animated-number"
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -33,25 +34,29 @@ const staggerContainer = {
 const stats = [
   {
     icon: Building,
-    value: "150+",
+    value: 150,
+    suffix: "+",
     label: "Projects Completed",
     description: "Successfully delivered projects across East Africa"
   },
   {
     icon: Users,
-    value: "50+",
+    value: 50,
+    suffix: "+",
     label: "Happy Clients",
     description: "Satisfied clients who trust our expertise"
   },
   {
     icon: Award,
-    value: "15+",
+    value: 15,
+    suffix: "+",
     label: "Years Experience",
     description: "Proven track record in construction industry"
   },
   {
     icon: TrendingUp,
-    value: "98%",
+    value: 98,
+    suffix: "%",
     label: "Success Rate",
     description: "Projects completed on time and within budget"
   }
@@ -92,7 +97,7 @@ const coreValues = [
 
 export default function About() {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div 
@@ -172,25 +177,26 @@ export default function About() {
           animate="animate"
         >
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Impact in Numbers</h3>
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Achievements</h3>
             <p className="text-gray-600 text-lg">Measurable results that speak to our commitment and expertise</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
               <motion.div key={index} variants={fadeInUp}>
-                <Card className="text-center bg-white hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  <CardContent className="p-6">
-                    <div className="flex justify-center mb-4">
-                      <div className="p-3 bg-amber-100 rounded-full">
-                        <stat.icon className="h-8 w-8 text-amber-600" />
-                      </div>
+                <div className="text-center bg-white p-8 rounded-lg transition-transform duration-300 hover:-translate-y-1">
+                  <div className="flex flex-col items-center justify-center">
+                    <div className="p-3 bg-amber-100 rounded-full inline-flex mb-2">
+                      <stat.icon className="h-5 w-5 text-amber-600" />
                     </div>
-                    <div className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
-                    <div className="text-lg font-semibold text-gray-700 mb-2">{stat.label}</div>
-                    <p className="text-sm text-gray-500">{stat.description}</p>
-                  </CardContent>
-                </Card>
+                    <AnimatedNumber 
+                      value={stat.value} 
+                      suffix={stat.suffix}
+                      className="text-2xl font-bold text-gray-900"
+                    />
+                  </div>
+                    <h4 className="text-lg font-extralight text-gray-700 mt-3 mb-3">{stat.label}</h4>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -203,7 +209,7 @@ export default function About() {
           animate="animate"
         >
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Core Values</h3>
+            <h3 className="text-3xl font-bold text-primary mb-4">Our Core Values</h3>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               The principles that guide every decision we make and every project we undertake
             </p>
@@ -237,7 +243,7 @@ export default function About() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <Card className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+          <Card className="bg-gradient-to-r from-secondary to-primary text-white">
             <CardContent className="p-12">
               <h3 className="text-3xl font-bold mb-4">Ready to Build with Us?</h3>
               <p className="text-xl mb-8 opacity-90">
@@ -249,7 +255,7 @@ export default function About() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Get a Quote
+                  Contact us
                 </motion.button>
                 <motion.button 
                   className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-amber-600 transition-colors duration-200"
