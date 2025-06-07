@@ -203,7 +203,7 @@ export default function KamiliHeader() {
           </div>
           <div className="relative z-10 flex h-full items-center justify-center">
             <div className="text-center text-white">
-              <TextRoll className="text-4xl md:text-5xl font-bold tracking-tight">
+              <TextRoll className="text-5xl md:text-5xl font-bold tracking-tight">
                 Build with Kamili Group
               </TextRoll>
               <motion.p

@@ -104,7 +104,7 @@ export default function About() {
           <Badge variant="outline" className="mb-4 text-secondary border-amber-200">
             About Kamili Group
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
             Building Trust, Creating Excellence
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
