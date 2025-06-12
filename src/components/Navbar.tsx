@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Phone, Clock, MapPin, Eye } from "lucide-react"
-import { Link, useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { TextRoll } from "./ui/text-roll"
 import homebanner from "@/assets/home-banner.jpg"
-
 
 interface NavItem {
   name: string
@@ -26,8 +25,13 @@ const navItems: NavItem[] = [
 export default function KamiliHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isNavigating, setIsNavigating] = useState(false)
+  const [navProgress, setNavProgress] = useState(0)
 
   const location = useLocation()
+  const navigate = useNavigate()
+
+  console.log(navProgress)
 
   const IsHomePage = location.pathname === "/"
 
@@ -38,6 +42,34 @@ export default function KamiliHeader() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const handleNavigation = (href: string) => {
+    if (location.pathname !== href) {
+      setIsNavigating(true)
+      setNavProgress(0)
+      
+      // Simulate navigation progress
+      const progressInterval = setInterval(() => {
+        setNavProgress(prev => {
+          if (prev >= 80) {
+            clearInterval(progressInterval)
+            return 80
+          }
+          return prev + Math.random() * 20
+        })
+      }, 50)
+
+      setTimeout(() => {
+        setNavProgress(100)
+        setTimeout(() => {
+          navigate(href)
+          setIsMobileMenuOpen(false)
+          setIsNavigating(false)
+          clearInterval(progressInterval)
+        }, 200)
+      }, 300)
+    }
+  }
 
   const mobileMenuVariants = {
     closed: {
@@ -66,6 +98,8 @@ export default function KamiliHeader() {
 
   return (
     <div className="relative">
+      
+
       {/* Top Contact Bar */}
       <div className="bg-slate-800 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -108,26 +142,29 @@ export default function KamiliHeader() {
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
-              <Link to="/" className="flex items-center space-x-3">
+              <button onClick={() => handleNavigation('/')} className="flex items-center space-x-3">
                 <img
                   src="/logo.png"
                   alt="Kamili Group Logo"
                   className="h-20 w-30 rounded-full"
                 />
-              </Link>
+              </button>
             </motion.div>
 
             {/* Desktop Navigation */}
             <nav className="hidden items-center space-x-1 xl:flex">
               {navItems.map((item) => (
-                <Link
+                <motion.button
                   key={item.name}
-                  to={item.href}
+                  onClick={() => handleNavigation(item.href)}
                   className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                     location.pathname === item.href 
                       ? "text-amber-500" 
                       : "text-slate-700 hover:text-amber-500"
                   }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  disabled={isNavigating}
                 >
                   {item.name}
                   {location.pathname === item.href && (
@@ -143,7 +180,7 @@ export default function KamiliHeader() {
                       }}
                     />
                   )}
-                </Link>
+                </motion.button>
               ))}
             </nav>
 
@@ -152,6 +189,7 @@ export default function KamiliHeader() {
               className="rounded-lg p-2 text-slate-700 transition-colors duration-200 hover:bg-slate-100 xl:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               whileTap={{ scale: 0.95 }}
+              disabled={isNavigating}
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </motion.button>
@@ -170,17 +208,17 @@ export default function KamiliHeader() {
                 <div className="space-y-1 py-4">
                   {navItems.map((item) => (
                     <motion.div key={item.name} variants={mobileItemVariants}>
-                      <Link
-                        to={item.href}
-                        className={`block px-4 py-3 text-sm font-medium transition-colors duration-200 ${
+                      <button
+                        onClick={() => handleNavigation(item.href)}
+                        className={`block w-full text-left px-4 py-3 text-sm font-medium transition-colors duration-200 disabled:opacity-50 ${
                           location.pathname === item.href
                             ? "bg-amber-50 text-amber-500"
                             : "text-slate-700 hover:bg-slate-50 hover:text-amber-500"
                         }`}
-                        onClick={() => setIsMobileMenuOpen(false)}
+                        disabled={isNavigating}
                       >
                         {item.name}
-                      </Link>
+                      </button>
                     </motion.div>
                   ))}
                 </div>
@@ -190,10 +228,7 @@ export default function KamiliHeader() {
         </div>
       </motion.header>
 
-
       {IsHomePage && (
-        <>
-          {/* Hero Section */}
         <section className="relative h-[600px] overflow-hidden">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -219,11 +254,7 @@ export default function KamiliHeader() {
             </div>
           </div>
         </section>
-        </>
       )}
-
-       
-
     </div>
   )
 }
