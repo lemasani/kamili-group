@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Phone, Clock, MapPin, Eye } from "lucide-react"
-import { Link, useLocation } from "react-router-dom"
-
-import homebanner from "../assets/home-banner.jpg"
+import { Link } from "react-router-dom"
 import { TextRoll } from "./ui/text-roll"
+import homebanner from "@/assets/home-banner.jpg"
+
 
 interface NavItem {
   name: string
@@ -26,10 +26,7 @@ const navItems: NavItem[] = [
 export default function KamiliHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const location = useLocation()
 
-  // Check if current route is home
-  const isHomePage = location.pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -190,9 +187,8 @@ export default function KamiliHeader() {
         </div>
       </motion.header>
 
-      {/* Hero Section with Background Image - Only show on home page */}
-      {isHomePage && (
-        <div className="relative h-[600px] overflow-hidden">
+       {/* Hero Section */}
+        <section className="relative h-[600px] overflow-hidden">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
@@ -216,8 +212,8 @@ export default function KamiliHeader() {
               </motion.p>
             </div>
           </div>
-        </div>
-      )}
+        </section>
+
     </div>
   )
 }
