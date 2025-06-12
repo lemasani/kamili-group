@@ -1,0 +1,206 @@
+import { motion } from 'framer-motion';
+import { ArrowRight, Phone, Mail } from 'lucide-react';
+
+
+import { Badge } from '@/components/ui/badge';
+import { StatsSection } from '@/components/Sections/StatsSection';
+import { ServicesSection } from '@/components/Sections/ServiceSection';
+import { Services } from '@/data/services';
+import { homeTestimonials, whyChooseUsData } from '@/data/homedata';
+import { Card, CardContent } from '@/components/ui/card';
+import { ProjectsSection } from '@/components/Sections/ProjectSection';
+import { recentProjects } from '@/data/projectsData';
+import { TestimonialsSection } from '@/components/Sections/TestimonialSection';
+import { staggerContainer, fadeInLeft, fadeInRight, fadeInUp } from '@/lib/animationVariants';
+import { Stats } from '@/data/Stats';
+
+export default function Home() {
+  return (
+    <div className="min-h-screen">
+      {/* About Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="grid lg:grid-cols-2 gap-12 items-center"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+          >
+            <motion.div variants={fadeInLeft}>
+              <Badge variant="outline" className="mb-4 text-secondary border-secondary/20">
+                About Kamili Group
+              </Badge>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
+                Building Excellence Since 2008
+              </h2>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                For over 15 years, Kamili Group has been at the forefront of Tanzania's construction industry, 
+                delivering exceptional projects that combine innovative design with superior craftsmanship.
+              </p>
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                From residential homes to large commercial complexes, we bring your vision to life with 
+                uncompromising quality and attention to detail.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <motion.button
+                  className="bg-secondary text-white px-8 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors duration-200 flex items-center justify-center"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Learn More About Us
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </motion.button>
+                <motion.button
+                  className="border-2 border-secondary text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-secondary hover:text-white transition-colors duration-200"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  View Our Projects
+                </motion.button>
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeInRight} className="relative">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4">
+                  <img
+                    src="/about-1.jpg"
+                    alt="Construction site"
+                    className="rounded-lg shadow-lg w-full h-48 object-cover"
+                  />
+                  <img
+                    src="/about-2.jpg"
+                    alt="Completed building"
+                    className="rounded-lg shadow-lg w-full h-32 object-cover"
+                  />
+                </div>
+                <div className="space-y-4 mt-8">
+                  <img
+                    src="/about-3.jpg"
+                    alt="Team at work"
+                    className="rounded-lg shadow-lg w-full h-32 object-cover"
+                  />
+                  <img
+                    src="/about-4.jpg"
+                    alt="Modern building"
+                    className="rounded-lg shadow-lg w-full h-48 object-cover"
+                  />
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      <StatsSection
+        title="Our Achievements"
+        description="Numbers that speak to our experience and success"
+        stats={Stats}
+      />
+
+      <ServicesSection
+        badge="Our Services"
+        title="Comprehensive Construction Solutions"
+        description="From initial design to final completion, we offer a full range of construction services tailored to meet your specific needs and requirements."
+        services={Services}
+      />
+
+      {/* Why Choose Us Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
+              Why Choose Kamili Group?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We combine experience, expertise, and innovation to deliver construction projects 
+              that exceed expectations and stand the test of time.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+          >
+            {whyChooseUsData.map((item, index) => (
+              <motion.div key={index} variants={fadeInUp}>
+                <Card className="text-center h-full bg-white hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+                  <CardContent className="p-8">
+                    <div className="mb-6">
+                      <div className="p-4 bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-2xl group-hover:from-secondary/20 group-hover:to-secondary/10 transition-colors duration-300 inline-block">
+                        <item.icon className="h-8 w-8 text-secondary" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold text-primary mb-4 group-hover:text-secondary transition-colors duration-300">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <ProjectsSection
+        badge="Our Work"
+        title="Recent Projects"
+        description="Take a look at some of our recently completed projects that showcase our commitment to quality and innovation."
+        projects={recentProjects}
+      />
+
+      <TestimonialsSection
+        title="What Our Clients Say"
+        description="Don't just take our word for it. Here's what our satisfied clients have to say about working with Kamili Group."
+        testimonials={homeTestimonials}
+      />
+
+      {/* Call to Action Section */}
+      <section className="py-16 bg-gradient-to-r from-secondary to-primary text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Ready to Start Your Project?
+            </h2>
+            <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
+              Let's discuss your construction needs and bring your vision to life. 
+              Contact us today for a free consultation and quote.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <motion.button
+                className="bg-white text-secondary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 flex items-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Phone className="mr-2 h-5 w-5" />
+                Call Us Now
+              </motion.button>
+              <motion.button
+                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-colors duration-200 flex items-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Mail className="mr-2 h-5 w-5" />
+                Get Free Quote
+              </motion.button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}

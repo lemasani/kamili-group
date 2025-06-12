@@ -1,99 +1,13 @@
-import { motion } from "framer-motion"
-import { 
-  Target, 
-  Eye, 
-  Users, 
-  Building, 
-  Award, 
-  TrendingUp,
-  Heart,
-  Shield,
-  Lightbulb,
-  Handshake,
-  Star,
-  CheckCircle
-} from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
-import { Badge } from "../ui/badge"
-import { AnimatedNumber } from "../ui/animated-number"
+import { StatsSection } from "@/components/Sections/StatsSection";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { coreValues } from "@/data/aboutData";
+import { Stats } from "@/data/Stats";
+import { fadeInUp, staggerContainer } from "@/lib/animationVariants";
+import { motion } from "framer-motion";
+import { Target, Eye } from "lucide-react";
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-}
 
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-}
-
-const stats = [
-  {
-    icon: Building,
-    value: 150,
-    suffix: "+",
-    label: "Projects Completed",
-    description: "Successfully delivered projects across East Africa"
-  },
-  {
-    icon: Users,
-    value: 50,
-    suffix: "+",
-    label: "Happy Clients",
-    description: "Satisfied clients who trust our expertise"
-  },
-  {
-    icon: Award,
-    value: 15,
-    suffix: "+",
-    label: "Years Experience",
-    description: "Proven track record in construction industry"
-  },
-  {
-    icon: TrendingUp,
-    value: 98,
-    suffix: "%",
-    label: "Success Rate",
-    description: "Projects completed on time and within budget"
-  }
-]
-
-const coreValues = [
-  {
-    icon: Shield,
-    title: "Integrity",
-    description: "We conduct our business with the highest ethical standards and transparency in all our dealings."
-  },
-  {
-    icon: Star,
-    title: "Excellence",
-    description: "We strive for superior quality in every project, exceeding client expectations consistently."
-  },
-  {
-    icon: Lightbulb,
-    title: "Innovation",
-    description: "We embrace cutting-edge technologies and creative solutions to deliver modern construction."
-  },
-  {
-    icon: Handshake,
-    title: "Partnership",
-    description: "We build lasting relationships with clients, suppliers, and communities through trust and collaboration."
-  },
-  {
-    icon: Heart,
-    title: "Sustainability",
-    description: "We are committed to environmentally responsible construction practices for future generations."
-  },
-  {
-    icon: CheckCircle,
-    title: "Reliability",
-    description: "Our clients can depend on us to deliver projects on time, within budget, and to specification."
-  }
-]
 
 export default function About() {
   return (
@@ -106,7 +20,7 @@ export default function About() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <Badge variant="outline" className="mb-4 text-secondary border-amber-200">
+          <Badge variant="outline" className="mb-4 text-secondary border-secondary/20">
             About Kamili Group
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
@@ -130,8 +44,8 @@ export default function About() {
             <Card className="h-full bg-white hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="p-3 bg-amber-100 rounded-lg">
-                    <Target className="h-6 w-6 text-amber-600" />
+                  <div className="p-3 bg-secondary/10 rounded-lg">
+                    <Target className="h-6 w-6 text-secondary" />
                   </div>
                   <CardTitle className="text-2xl text-gray-900">Our Mission</CardTitle>
                 </div>
@@ -169,38 +83,12 @@ export default function About() {
           </motion.div>
         </motion.div>
 
-        {/* Company Stats */}
-        <motion.div 
+        <StatsSection
+          title="Our Achievements"
+          description="Measurable results that speak to our commitment and expertise"
+          stats={Stats}
           className="mb-16"
-          variants={staggerContainer}
-          initial="initial"
-          animate="animate"
-        >
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Achievements</h3>
-            <p className="text-gray-600 text-lg">Measurable results that speak to our commitment and expertise</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {stats.map((stat, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <div className="text-center bg-white p-8 rounded-lg transition-transform duration-300 hover:-translate-y-1">
-                  <div className="flex flex-col items-center justify-center">
-                    <div className="p-3 bg-amber-100 rounded-full inline-flex mb-2">
-                      <stat.icon className="h-5 w-5 text-amber-600" />
-                    </div>
-                    <AnimatedNumber 
-                      value={stat.value} 
-                      suffix={stat.suffix}
-                      className="text-2xl font-bold text-gray-900"
-                    />
-                  </div>
-                    <h4 className="text-lg font-extralight text-gray-700 mt-3 mb-3">{stat.label}</h4>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        />
 
         {/* Core Values */}
         <motion.div 
@@ -221,8 +109,8 @@ export default function About() {
                 <Card className="h-full bg-white hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
                   <CardHeader className="pb-4">
                     <div className="flex items-center space-x-3">
-                      <div className="p-3 bg-gray-100 rounded-lg group-hover:bg-amber-100 transition-colors duration-300">
-                        <value.icon className="h-6 w-6 text-gray-600 group-hover:text-amber-600 transition-colors duration-300" />
+                      <div className="p-3 bg-gray-100 rounded-lg group-hover:bg-secondary/10 transition-colors duration-300">
+                        <value.icon className="h-6 w-6 text-gray-600 group-hover:text-secondary transition-colors duration-300" />
                       </div>
                       <CardTitle className="text-xl text-gray-900">{value.title}</CardTitle>
                     </div>
@@ -251,14 +139,14 @@ export default function About() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <motion.button 
-                  className="bg-white text-amber-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200"
+                  className="bg-white text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Contact us
                 </motion.button>
                 <motion.button 
-                  className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-amber-600 transition-colors duration-200"
+                  className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-colors duration-200"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -270,5 +158,5 @@ export default function About() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

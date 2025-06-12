@@ -1,13 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import RootLayout from "./layout/RootLayout"
-import About from "./components/Blocks/About"
-import Home from "./components/Blocks/Home"
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import RootLayout from "./layout/RootLayout";
+import About from "./Blocks/About";
+import Home from "./Blocks/Home";
 
 function App() {
-
   return (
-     <BrowserRouter>
+    <BrowserRouter>
       <RootLayout>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -21,7 +19,7 @@ function App() {
         </Routes>
       </RootLayout>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

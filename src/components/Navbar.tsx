@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Phone, Clock, MapPin, Eye } from "lucide-react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { TextRoll } from "./ui/text-roll"
 import homebanner from "@/assets/home-banner.jpg"
 
@@ -27,6 +27,9 @@ export default function KamiliHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
+  const location = useLocation()
+
+  const IsHomePage = location.pathname === "/"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -187,7 +190,10 @@ export default function KamiliHeader() {
         </div>
       </motion.header>
 
-       {/* Hero Section */}
+
+      {IsHomePage && (
+        <>
+          {/* Hero Section */}
         <section className="relative h-[600px] overflow-hidden">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -213,6 +219,10 @@ export default function KamiliHeader() {
             </div>
           </div>
         </section>
+        </>
+      )}
+
+       
 
     </div>
   )
