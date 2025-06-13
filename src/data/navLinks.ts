@@ -6,8 +6,13 @@ import {
   Youtube
 } from 'lucide-react';
 
+interface NavItem {
+  name: string
+  href: string
+  isActive?: boolean
+}
 
-export const navItems = [
+export const navItems: NavItem[] = [
   { name: "HOME", href: "/" },
   { name: "ABOUT US", href: "/about" },
   { name: "SERVICES", href: "/services" },
