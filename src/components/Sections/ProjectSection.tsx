@@ -51,7 +51,7 @@ export function ProjectsSection({
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <motion.button
-              className="bg-secondary text-white px-8 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors duration-200 flex items-center mx-auto"
+              className="bg-primary text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors duration-200 flex items-center mx-auto"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
