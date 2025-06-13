@@ -7,6 +7,7 @@ import { serviceProcess, Services, whyChooseOurServices } from '@/data/services'
 import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer } from '@/lib/animationVariants';
 import { CTAVariants } from '@/components/Call-to-action';
 import { useNavigate } from 'react-router-dom';
+import CurtainrodSvg from '@/assets/curtain-rod-forkend.svg';
 
 export default function ServiceBlock() {
   const navigate = useNavigate();
@@ -164,7 +165,6 @@ export default function ServiceBlock() {
                         </li>
                       ))}
                     </ul>
-                
                   </CardContent>
                 </Card>
               </motion.div>
@@ -191,29 +191,60 @@ export default function ServiceBlock() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-4 gap-8"
+            className="grid grid-cols-1 md:grid-cols-4 gap-8 relative"
             variants={staggerContainer}
             initial="initial"
             animate="animate"
           >
             {serviceProcess.map((process, index) => (
-              <motion.div
+                <motion.div
                 key={index}
                 variants={fadeInUp}
                 className="text-center relative"
-              >
+                >
                 <div className="bg-secondary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl font-bold text-secondary">{process.step}</span>
                 </div>
                 <h3 className="text-xl font-semibold text-primary mb-2">{process.title}</h3>
                 <p className="text-gray-600">{process.description}</p>
                 
-                {index < 3 && (
-                  <div className="hidden md:block absolute top-8 left-full w-full">
-                    <ArrowRight className="h-5 w-5 text-secondary mx-auto" />
-                  </div>
+                {/* SVG Divider between steps */}
+                {index < serviceProcess.length - 1 && (
+                  <motion.div
+                  className="hidden md:block absolute top-8 left-[50%] w-full h-6 flex items-center justify-center"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: 0.8 + (index * 0.2),
+                    ease: "easeOut"
+                  }}
+                  >
+                  <motion.div
+                    className="w-full h-6 flex items-center justify-center"
+                    animate={{
+                    opacity: [0.7, 1, 0.7]
+                    }}
+                    transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.5
+                    }}
+                  >
+                    <img
+                    src={CurtainrodSvg}
+                    alt="Process divider"
+                    className="w-full h-6 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      filter: 'hue-rotate(15deg) saturate(1.2)',
+                      transform: 'scaleX(0.8)'
+                    }}
+                    />
+                  </motion.div>
+                  </motion.div>
                 )}
-              </motion.div>
+                </motion.div>
             ))}
           </motion.div>
         </div>
@@ -221,8 +252,7 @@ export default function ServiceBlock() {
 
       {/* Call to Action */}
       <CTAVariants.Services 
-        onConsultClick={()=>  navigate('/contact')}
-
+        onConsultClick={() => navigate('/contact')}
       />
 
       {/* Why Choose Our Services */}
