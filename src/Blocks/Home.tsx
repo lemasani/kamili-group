@@ -1,7 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Phone, Mail } from 'lucide-react';
-
-
+import { ArrowRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { StatsSection } from '@/components/Sections/StatsSection';
 import { ServicesSection } from '@/components/Sections/ServiceSection';
@@ -13,8 +11,12 @@ import { recentProjects } from '@/data/projectsData';
 import { TestimonialsSection } from '@/components/Sections/TestimonialSection';
 import { staggerContainer, fadeInLeft, fadeInRight, fadeInUp } from '@/lib/animationVariants';
 import { Stats } from '@/data/Stats';
+import { useNavigate } from 'react-router-dom';
+import { CTAVariants } from '@/components/Call-to-action';
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen">
       {/* About Section */}
@@ -46,6 +48,7 @@ export default function Home() {
                   className="bg-secondary text-white px-8 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors duration-200 flex items-center justify-center"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => navigate('/about')}
                 >
                   Learn More About Us
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -54,6 +57,7 @@ export default function Home() {
                   className="border-2 border-secondary text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-secondary hover:text-white transition-colors duration-200"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => navigate('/projects')}
                 >
                   View Our Projects
                 </motion.button>
@@ -165,42 +169,13 @@ export default function Home() {
         testimonials={homeTestimonials}
       />
 
-      {/* Call to Action Section */}
-      <section className="py-16 bg-gradient-to-r from-secondary to-primary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ready to Start Your Project?
-            </h2>
-            <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
-              Let's discuss your construction needs and bring your vision to life. 
-              Contact us today for a free consultation and quote.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <motion.button
-                className="bg-white text-secondary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 flex items-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Phone className="mr-2 h-5 w-5" />
-                Call Us Now
-              </motion.button>
-              <motion.button
-                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-colors duration-200 flex items-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Mail className="mr-2 h-5 w-5" />
-                Get Free Quote
-              </motion.button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* Call to Action Section - Using new CTA component */}
+      <CTAVariants.Contact 
+        customTitle="Ready to Start Your Project?"
+        customDescription="Let's discuss your construction needs and bring your vision to life. Contact us today for a free consultation and quote."
+        onCallClick={() => window.location.href = 'tel:+255123456789'}
+        onEmailClick={() => navigate('/contact')}
+      />
     </div>
   );
 }

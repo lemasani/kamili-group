@@ -4,23 +4,9 @@ import { Menu, X, Phone, Clock, MapPin, Eye } from "lucide-react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { TextRoll } from "./ui/text-roll"
 import homebanner from "@/assets/home-banner.jpg"
+import { navItems } from "@/data/navLinks"
 
-interface NavItem {
-  name: string
-  href: string
-  isActive?: boolean
-}
 
-const navItems: NavItem[] = [
-  { name: "HOME", href: "/", isActive: true },
-  { name: "ABOUT US", href: "/about" },
-  { name: "SERVICES", href: "/services" },
-  { name: "PROJECTS", href: "/projects" },
-  { name: "CLIENTS", href: "/clients" },
-  { name: "CORE VALUES", href: "/core-values" },
-  { name: "OUR TEAM", href: "/team" },
-  { name: "CONTACT US", href: "/contact" },
-]
 
 export default function KamiliHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)

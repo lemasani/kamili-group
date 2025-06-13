@@ -4,6 +4,7 @@ import RootLayout from "./layout/RootLayout";
 import About from "./Blocks/About";
 import Home from "./Blocks/Home";
 import { TransitionWrapper } from "./components/PageTransitions/TransitionWrapper";
+import ServiceBlock from "./Blocks/Services";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -31,9 +32,7 @@ function AnimatedRoutes() {
           path="/services" 
           element={
             <TransitionWrapper>
-              <div className="min-h-screen flex items-center justify-center">
-                <h1 className="text-4xl font-bold text-primary">Services Page</h1>
-              </div>
+              <ServiceBlock />
             </TransitionWrapper>
           } 
         />
