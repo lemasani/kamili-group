@@ -1,12 +1,15 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle, Phone, Mail } from 'lucide-react';
+import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { serviceProcess, Services, whyChooseOurServices } from '@/data/services';
 import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer } from '@/lib/animationVariants';
+import { CTAVariants } from '@/components/Call-to-action';
+import { useNavigate } from 'react-router-dom';
 
 export default function ServiceBlock() {
+  const navigate = useNavigate();
   const featuredService = Services[0]; // Design and Consultations as featured
 
   return (
@@ -217,43 +220,10 @@ export default function ServiceBlock() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-r from-secondary to-primary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ready to Start Your Project?
-            </h2>
-            <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
-              Let us help you bring your construction vision to life with our comprehensive services 
-              and expert team.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button 
-                  size="lg" 
-                  variant="secondary" 
-                >
-                  <Phone className="mr-2 h-5 w-5" />
-                  Call for Consultation
-                </Button>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button 
-                  size="lg" 
-                  variant="default"
-                >
-                  <Mail className="mr-2 h-5 w-5" />
-                  Request Quote
-                </Button>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <CTAVariants.Services 
+        onConsultClick={()=>  navigate('/contact')}
+
+      />
 
       {/* Why Choose Our Services */}
       <section className="py-16 bg-gray-50">
