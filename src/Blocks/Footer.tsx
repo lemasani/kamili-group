@@ -1,3 +1,4 @@
+import { quickLinks } from '@/data/navLinks';
 import { motion } from 'framer-motion';
 import { 
   MapPin, 
@@ -29,14 +30,7 @@ const staggerContainer = {
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const quickLinks = [
-    { name: 'About Us', href: '/about' },
-    { name: 'Our Services', href: '/services' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Our Team', href: '/team' },
-    { name: 'Contact Us', href: '/contact' },
-    { name: 'Core Values', href: '/core-values' }
-  ];
+ 
 
   const services = [
     { name: 'General Construction', href: '/services#general-construction' },
@@ -69,7 +63,7 @@ export default function Footer() {
           <motion.div variants={fadeInUp} className="lg:col-span-1">
             <div className="mb-6">
               <div className="flex items-center space-x-3 mb-4">
-                <img src="/logo.png" alt="Kamili Group Logo" />
+                <img src="/logo-k-white-bg.png" alt="Kamili Group Logo" />
               </div>
               <p className="text-gray-300 text-sm leading-relaxed mb-6">
                 Building excellence for over 15 years. We are committed to delivering 
