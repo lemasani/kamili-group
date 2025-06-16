@@ -13,8 +13,9 @@ import { staggerContainer, fadeInLeft, fadeInRight, fadeInUp } from '@/lib/anima
 import { Stats } from '@/data/Stats';
 import { useNavigate } from 'react-router-dom';
 import { CTAVariants } from '@/components/Call-to-action';
+import { withPageTransition } from '@/components/PageTransitions/TransitionWrapper';
 
-export default function Home() {
+function Home() {
   const navigate = useNavigate();
 
   return (
@@ -179,3 +180,7 @@ export default function Home() {
     </div>
   );
 }
+
+// Export the component wrapped with the HOC
+const HomePage = withPageTransition(Home);
+export default HomePage;

@@ -1,3 +1,4 @@
+import { withPageTransition } from "@/components/PageTransitions/TransitionWrapper";
 import { StatsSection } from "@/components/Sections/StatsSection";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,7 +10,7 @@ import { Target, Eye } from "lucide-react";
 
 
 
-export default function About() {
+function About() {
   return (
     <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -160,3 +161,6 @@ export default function About() {
     </section>
   );
 }
+
+const AboutPage = withPageTransition(About);
+export default AboutPage; 
