@@ -8,8 +8,9 @@ import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer } from '@/lib/anima
 import { CTAVariants } from '@/components/Call-to-action';
 import { useNavigate } from 'react-router-dom';
 import CurtainrodSvg from '@/assets/curtain-rod-forkend.svg';
+import { withPageTransition } from '@/components/PageTransitions/TransitionWrapper';
 
-export default function ServiceBlock() {
+function ServiceBlock() {
   const navigate = useNavigate();
   const featuredService = Services[0]; // Design and Consultations as featured
 
@@ -299,3 +300,7 @@ export default function ServiceBlock() {
     </div>
   );
 }
+
+const Service = withPageTransition(ServiceBlock);
+
+export default Service
