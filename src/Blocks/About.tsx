@@ -24,13 +24,29 @@ function About() {
           <Badge variant="outline" className="mb-4 text-secondary border-secondary/20">
             About Kamili Group
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
-            Building Trust, Creating Excellence
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-secondary">
+            We Believe in and Promote Quality Delivery
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            With over 15 years of experience in the construction industry, Kamili Group has established 
-            itself as a leading construction company in Tanzania, delivering exceptional projects that 
-            stand the test of time.
+          <p className="text-xl text-center text-gray-600 max-w-3xl mx-auto">
+            We are committed to
+            providing the best possible
+            construction expertise &
+            service to ensure cost
+            effective and successful
+            projects.
+            Our exceptional customer
+            service, involves interpreting our
+            clients’ <strong className="text-secondary font-bold">dreams/visions</strong> in
+            drawings and bring them to the
+            desired reality through
+            construction solutions that
+            stands the test of time. We
+            communicate with our clients
+            throughout the construction
+            process to keep them informed
+            of progress and to ensure that
+            our project keeps on schedule
+            and within budget.
           </p>
         </motion.div>
 
@@ -53,10 +69,9 @@ function About() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 text-lg leading-relaxed">
-                  To deliver exceptional construction services that exceed client expectations while 
-                  maintaining the highest standards of quality, safety, and environmental responsibility. 
-                  We are committed to building lasting structures that contribute to the development 
-                  of our communities.
+                  We aim to be an outstanding partner of choice in the
+                  construction industry by our commitment to excellence in job completion and exceptional customer
+                  service as we offer prompt and long-lasting solutions.
                 </p>
               </CardContent>
             </Card>
@@ -74,10 +89,9 @@ function About() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 text-lg leading-relaxed">
-                  To become the most trusted and innovative construction company in East Africa, 
-                  recognized for our commitment to excellence, sustainability, and positive impact 
-                  on the communities we serve. We envision a future where every project we undertake 
-                  sets new standards in the industry.
+                  Becoming the regional market leader in provision of the best possible construction expertise
+                  and services whereby public and cooperate world
+                  can always rely on
                 </p>
               </CardContent>
             </Card>
