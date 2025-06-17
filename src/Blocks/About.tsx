@@ -1,3 +1,4 @@
+import { CTAVariants } from "@/components/Call-to-action";
 import { withPageTransition } from "@/components/PageTransitions/TransitionWrapper";
 import { StatsSection } from "@/components/Sections/StatsSection";
 import { Badge } from "@/components/ui/badge";
@@ -110,6 +111,7 @@ function About() {
           variants={staggerContainer}
           initial="initial"
           animate="animate"
+          className="mb-8"
         >
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-primary mb-4">Our Core Values</h3>
@@ -140,37 +142,7 @@ function About() {
         </motion.div>
 
         {/* Call to Action */}
-        <motion.div 
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <Card className="bg-gradient-to-r from-secondary to-primary text-white">
-            <CardContent className="p-12">
-              <h3 className="text-3xl font-bold mb-4">Ready to Build with Us?</h3>
-              <p className="text-xl mb-8 opacity-90">
-                Let's discuss your next construction project and bring your vision to life.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.button 
-                  className="bg-white text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Contact us
-                </motion.button>
-                <motion.button 
-                  className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-colors duration-200"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  View Our Projects
-                </motion.button>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+        <CTAVariants.Contact />
       </div>
     </section>
   );
