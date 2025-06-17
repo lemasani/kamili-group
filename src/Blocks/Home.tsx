@@ -34,19 +34,35 @@ function Home() {
                 About Kamili Group
               </Badge>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
-                Building Excellence Since 2008
+                Building Excellence 
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                For over 15 years, Kamili Group has been at the forefront of Tanzania's construction industry, 
-                delivering exceptional projects that combine innovative design with superior craftsmanship.
+                Kamili is a design and construction firm founded by
+                a team of visionary Tanzanians whose inspiration is
+                derived from a fixation with getting things exactly
+                the way the customer wants. The Swahili word
+                “Kamili” which translates “Precise” speaks our
+                desire to not just satisfy our customers’ needs but to
+                do so with the exactness that is expected. We
+                specialize in building custom made dreams.
+                Since our inception, we have
+                endeavored to be a cut above our
+                peers.
+
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                From residential homes to large commercial complexes, we bring your vision to life with 
-                uncompromising quality and attention to detail.
+                Our philosophy is hinged on three principles of
+                design and implementation, namely imagination,
+                originality and realization. On one hand, we view
+                our customers as highly inspired people who are
+                looking to achieve their dreams and on the other
+                hand, we see ourselves as facilitators of those goals,
+                striving continually for excellence in every project
+                we do.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.button
-                  className="bg-secondary text-white px-8 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors duration-200 flex items-center justify-center"
+                  className="bg-primary text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-secondary/90 hover:text-primary transition-colors duration-200 flex items-center justify-center"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => navigate('/about')}
@@ -55,7 +71,7 @@ function Home() {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </motion.button>
                 <motion.button
-                  className="border-2 border-secondary text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-secondary hover:text-white transition-colors duration-200"
+                  className="border-2 border-primary text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-secondary hover:text-white transition-colors duration-200"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => navigate('/projects')}
