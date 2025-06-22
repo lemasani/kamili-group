@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { serviceProcess, Services, whyChooseOurServices } from '@/data/services';
 import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer } from '@/lib/animationVariants';
@@ -9,6 +9,7 @@ import { CTAVariants } from '@/components/Call-to-action';
 import { useNavigate } from 'react-router-dom';
 import CurtainrodSvg from '@/assets/curtain-rod-forkend.svg';
 import { withPageTransition } from '@/components/PageTransitions/TransitionWrapper';
+import { ServicesSection } from '@/components/Sections/ServiceSection';
 
 function ServiceBlock() {
   const navigate = useNavigate();
@@ -117,65 +118,18 @@ function ServiceBlock() {
         </div>
       </section>
 
-      {/* All Services Grid */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl font-bold mb-6 text-primary">
-              Complete Range of Services
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We offer comprehensive construction services to meet all your building needs, 
-              from concept to completion.
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-            variants={staggerContainer}
-            initial="initial"
-            animate="animate"
-          >
-            {Services.map((service, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <Card className="h-full bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group border-0 shadow-lg">
-                  <CardHeader className="pb-4">
-                    <div className="flex flex-col items-center text-center">
-                      <div className="p-4 bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-2xl group-hover:from-secondary/20 group-hover:to-secondary/10 transition-colors duration-300 mb-4">
-                        <service.icon className="h-8 w-8 text-secondary" />
-                      </div>
-                      <CardTitle className="text-xl text-primary group-hover:text-secondary transition-colors duration-300">
-                        {service.title}
-                      </CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                      {service.description}
-                    </p>
-                    <ul className="space-y-2">
-                      {service.features.slice(0, 3).map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-xs text-gray-500">
-                          <CheckCircle className="h-3 w-3 text-primary mr-2 flex-shrink-0" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      {/* All Services Grid - Using ServicesSection Component */}
+      <ServicesSection
+        title="Complete Range of Services"
+        description="We offer comprehensive construction services to meet all your building needs, from concept to completion."
+        services={Services}
+        className="py-16 bg-gray-50"
+        gridCols="4"
+        compact={false}
+      />
 
       {/* Process Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white mb-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"

@@ -14,6 +14,11 @@ import { Stats } from '@/data/Stats';
 import { useNavigate } from 'react-router-dom';
 import { CTAVariants } from '@/components/Call-to-action';
 import { withPageTransition } from '@/components/PageTransitions/TransitionWrapper';
+import { Link } from 'react-router-dom';
+import { CompletedBuildingImage, ConstructionSiteImage, ModernBuildingImage, TeamAtWorkImage } from '@/data/Image';
+
+// Create motion component from Link
+const MotionLink = motion(Link);
 
 function Home() {
   const navigate = useNavigate();
@@ -41,14 +46,13 @@ function Home() {
                 a team of visionary Tanzanians whose inspiration is
                 derived from a fixation with getting things exactly
                 the way the customer wants. The Swahili word
-                “Kamili” which translates “Precise” speaks our
-                desire to not just satisfy our customers’ needs but to
+                "Kamili" which translates "Precise" speaks our
+                desire to not just satisfy our customers' needs but to
                 do so with the exactness that is expected. We
                 specialize in building custom made dreams.
                 Since our inception, we have
                 endeavored to be a cut above our
                 peers.
-
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                 Our philosophy is hinged on three principles of
@@ -61,23 +65,23 @@ function Home() {
                 we do.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <motion.button
+                <MotionLink
+                  to="/about"
                   className="bg-primary text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-secondary/90 hover:text-primary transition-colors duration-200 flex items-center justify-center"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => navigate('/about')}
                 >
                   Learn More About Us
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </motion.button>
-                <motion.button
+                </MotionLink>
+                <MotionLink
                   className="border-2 border-primary text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-secondary hover:text-white transition-colors duration-200"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => navigate('/projects')}
+                  to={"/projects"}
                 >
                   View Our Projects
-                </motion.button>
+                </MotionLink>
               </div>
             </motion.div>
 
@@ -85,24 +89,24 @@ function Home() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4">
                   <img
-                    src="/about-1.jpg"
+                    src={ConstructionSiteImage}
                     alt="Construction site"
                     className="rounded-lg shadow-lg w-full h-48 object-cover"
                   />
                   <img
-                    src="/about-2.jpg"
+                    src={CompletedBuildingImage}
                     alt="Completed building"
                     className="rounded-lg shadow-lg w-full h-32 object-cover"
                   />
                 </div>
                 <div className="space-y-4 mt-8">
                   <img
-                    src="/about-3.jpg"
+                    src={TeamAtWorkImage}
                     alt="Team at work"
                     className="rounded-lg shadow-lg w-full h-32 object-cover"
                   />
                   <img
-                    src="/about-4.jpg"
+                    src={ModernBuildingImage}
                     alt="Modern building"
                     className="rounded-lg shadow-lg w-full h-48 object-cover"
                   />
@@ -124,6 +128,12 @@ function Home() {
         title="Comprehensive Construction Solutions"
         description="From initial design to final completion, we offer a full range of construction services tailored to meet your specific needs and requirements."
         services={Services}
+        limit={4}
+        showViewMoreServices={true}
+        viewMoreText="Explore All Services"
+        onViewMoreClick={() => navigate('/services')}
+        gridCols="auto"
+        compact={false}
       />
 
       {/* Why Choose Us Section */}
