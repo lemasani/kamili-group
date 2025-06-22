@@ -128,6 +128,12 @@ function Home() {
         title="Comprehensive Construction Solutions"
         description="From initial design to final completion, we offer a full range of construction services tailored to meet your specific needs and requirements."
         services={Services}
+        limit={4}
+        showViewMoreServices={true}
+        viewMoreText="Explore All Services"
+        onViewMoreClick={() => navigate('/services')}
+        gridCols="auto"
+        compact={false}
       />
 
       {/* Why Choose Us Section */}
