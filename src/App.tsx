@@ -5,14 +5,10 @@ import About from "./Blocks/About";
 import Home from "./Blocks/Home";
 import ServiceBlock from "./Blocks/Services";
 import { withPageTransition } from "./components/PageTransitions/TransitionWrapper";
+import ProjectsPage from "./Blocks/Project/ProjectListing";
+import ProjectDetails from "./Blocks/Project/ProjectDetails";
 
 // Create transitioned components for simple pages
-const ProjectsPage = withPageTransition(() => (
-  <div className="min-h-screen flex items-center justify-center">
-    <h1 className="text-4xl font-bold text-primary">Projects Page</h1>
-  </div>
-));
-
 const ClientsPage = withPageTransition(() => (
   <div className="min-h-screen flex items-center justify-center">
     <h1 className="text-4xl font-bold text-primary">Clients Page</h1>
@@ -47,6 +43,7 @@ function AnimatedRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<ServiceBlock />} />
         <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/projects/:slug" element={<ProjectDetails />} />
         <Route path="/clients" element={<ClientsPage />} />
         <Route path="/core-values" element={<CoreValuesPage />} />
         <Route path="/team" element={<TeamPage />} />
