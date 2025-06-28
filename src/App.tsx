@@ -7,6 +7,7 @@ import ServiceBlock from "./Blocks/Services";
 import { withPageTransition } from "./components/PageTransitions/TransitionWrapper";
 import ProjectsPage from "./Blocks/Project/ProjectListing";
 import ProjectDetails from "./Blocks/Project/ProjectDetails";
+import NotFound from "./Blocks/NotFound";
 
 // Create transitioned components for simple pages
 const ClientsPage = withPageTransition(() => (
@@ -48,6 +49,7 @@ function AnimatedRoutes() {
         <Route path="/core-values" element={<CoreValuesPage />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
   );
