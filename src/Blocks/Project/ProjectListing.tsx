@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
-import { Calendar, MapPin, ArrowRight } from 'lucide-react'
+import { Calendar, MapPin } from 'lucide-react'
 import { getAllProjects } from '@/lib/Projectloader'
-import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { withPageTransition } from '@/components/PageTransitions/TransitionWrapper'
@@ -56,7 +55,7 @@ function ProjectsListingPage() {
             >
               {projects.map((project) => (
                 <motion.div key={project.slug} variants={fadeInUp}>
-                  <Link to={`/projects/${project.slug}`}>
+                  
                     <Card className="h-full bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group border-0 shadow-lg overflow-hidden">
                       <div className="relative overflow-hidden">
                         <img
@@ -99,15 +98,9 @@ function ProjectsListingPage() {
                           )}
                         </div>
                         
-                        <div className="mt-4 pt-4 border-t border-gray-100">
-                          <span className="text-sm text-secondary font-medium group-hover:text-primary transition-colors duration-300 flex items-center">
-                            View Project Details
-                            <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
-                          </span>
-                        </div>
+                        
                       </CardContent>
                     </Card>
-                  </Link>
                 </motion.div>
               ))}
             </motion.div>
