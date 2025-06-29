@@ -1,3 +1,5 @@
+import { type Variants } from 'framer-motion';
+
 export const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
@@ -24,7 +26,8 @@ export const staggerContainer = {
   }
 };
 
-export const mobileMenuVariants = {
+// Properly typed mobile menu variants
+export const mobileMenuVariants: Variants = {
   closed: {
     opacity: 0,
     height: 0,
@@ -44,7 +47,7 @@ export const mobileMenuVariants = {
   },
 };
 
-export const mobileItemVariants = {
+export const mobileItemVariants: Variants = {
   closed: { opacity: 0, x: -20 },
   open: { opacity: 1, x: 0 },
 };
@@ -136,4 +139,75 @@ export const springTransition = {
 export const easeTransition = {
   duration: 0.6,
   ease: [0.22, 1, 0.36, 1]
+};
+
+// navbar-specific variants
+export const navbarVariants: Variants = {
+  hidden: {
+    y: -100,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut",
+    },
+  },
+  scrolled: {
+    backgroundColor: "rgba(255, 255, 255, 0.95)",
+    backdropFilter: "blur(10px)",
+    transition: {
+      duration: 0.3,
+      ease: "easeOut",
+    },
+  },
+};
+
+export const logoVariants: Variants = {
+  initial: {
+    scale: 1,
+  },
+  hover: {
+    scale: 1.02,
+    transition: {
+      type: "spring",
+      stiffness: 400,
+      damping: 25,
+    },
+  },
+};
+
+export const navigationItemVariants: Variants = {
+  initial: {
+    scale: 1,
+    color: "#64748b", // slate-700
+  },
+  hover: {
+    scale: 1.05,
+    color: "#f59e0b", // amber-500
+    transition: {
+      duration: 0.2,
+    },
+  },
+  active: {
+    color: "#f59e0b", // amber-500
+  },
+};
+
+export const underlineVariants: Variants = {
+  initial: {
+    scaleX: 0,
+    opacity: 0,
+  },
+  animate: {
+    scaleX: 1,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 400,
+      damping: 30,
+    },
+  },
 };
