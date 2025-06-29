@@ -16,6 +16,7 @@ import { CTAVariants } from '@/components/Call-to-action';
 import { withPageTransition } from '@/components/PageTransitions/TransitionWrapper';
 import { Link } from 'react-router-dom';
 import { CompletedBuildingImage, ConstructionSiteImage, ModernBuildingImage, TeamAtWorkImage } from '@/data/Image';
+import ClientSliderSection from '@/components/Sections/ClientSliderSection';
 
 // Create motion component from Link
 const MotionLink = motion(Link);
@@ -122,6 +123,8 @@ function Home() {
         description="Numbers that speak to our experience and success"
         stats={Stats}
       />
+
+      <ClientSliderSection />
 
       <ServicesSection
         badge="Our Services"

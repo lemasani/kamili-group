@@ -17,7 +17,6 @@ export const navItems: NavItem[] = [
   { name: "ABOUT US", href: "/about" },
   { name: "SERVICES", href: "/services" },
   { name: "PROJECTS", href: "/projects" },
-  { name: "CLIENTS", href: "/clients" },
   { name: "CORE VALUES", href: "/core-values" },
   { name: "OUR TEAM", href: "/team" },
   { name: "CONTACT US", href: "/contact" },

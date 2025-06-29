@@ -1,8 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
 import type {
-  VariantLabels,
-  Target,
   TargetAndTransition,
   Transition,
 } from 'framer-motion';
@@ -16,12 +14,12 @@ export type TextRollProps = {
   transition?: Transition;
   variants?: {
     enter: {
-      initial: Target | VariantLabels | boolean;
-      animate: TargetAndTransition | VariantLabels;
+      initial: TargetAndTransition;
+      animate: TargetAndTransition;
     };
     exit: {
-      initial: Target | VariantLabels | boolean;
-      animate: TargetAndTransition | VariantLabels;
+      initial: TargetAndTransition;
+      animate: TargetAndTransition;
     };
   };
   onAnimationComplete?: () => void;
@@ -39,16 +37,21 @@ export function TextRoll({
 }: TextRollProps) {
   const defaultVariants = {
     enter: {
-      initial: { rotateX: 0 },
-      animate: { rotateX: 90 },
+      initial: { rotateX: 0 } as TargetAndTransition,
+      animate: { rotateX: 90 } as TargetAndTransition,
     },
     exit: {
-      initial: { rotateX: 90 },
-      animate: { rotateX: 0 },
+      initial: { rotateX: 90 } as TargetAndTransition,
+      animate: { rotateX: 0 } as TargetAndTransition,
     },
-  } as const;
+  };
 
   const letters = children.split('');
+
+  const enterInitial = variants?.enter?.initial ?? defaultVariants.enter.initial;
+  const enterAnimate = variants?.enter?.animate ?? defaultVariants.enter.animate;
+  const exitInitial = variants?.exit?.initial ?? defaultVariants.exit.initial;
+  const exitAnimate = variants?.exit?.animate ?? defaultVariants.exit.animate;
 
   return (
     <span className={className}>
@@ -61,12 +64,8 @@ export function TextRoll({
           >
             <motion.span
               className='absolute inline-block [backface-visibility:hidden] [transform-origin:50%_25%]'
-              initial={
-                variants?.enter?.initial ?? defaultVariants.enter.initial
-              }
-              animate={
-                variants?.enter?.animate ?? defaultVariants.enter.animate
-              }
+              initial={enterInitial}
+              animate={enterAnimate}
               transition={{
                 ...transition,
                 duration,
@@ -77,8 +76,8 @@ export function TextRoll({
             </motion.span>
             <motion.span
               className='absolute inline-block [backface-visibility:hidden] [transform-origin:50%_100%]'
-              initial={variants?.exit?.initial ?? defaultVariants.exit.initial}
-              animate={variants?.exit?.animate ?? defaultVariants.exit.animate}
+              initial={exitInitial}
+              animate={exitAnimate}
               transition={{
                 ...transition,
                 duration,

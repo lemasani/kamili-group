@@ -32,9 +32,9 @@ export function withPageTransition<P extends object>(
       };
     }, [location.pathname]);
 
-    // Smooth, calming easing curves
-    const smoothEasing = [0.25, 0.1, 0.25, 1];
-    const gentleEasing = [0.4, 0, 0.2, 1];
+    // Smooth, calming easing curves - fixed TypeScript typing
+    const smoothEasing = [0.25, 0.1, 0.25, 1] as const;
+    const gentleEasing = [0.4, 0, 0.2, 1] as const;
 
     return (
       <>
@@ -62,7 +62,7 @@ export function withPageTransition<P extends object>(
               <motion.img
                 src="/logo-k-white-bg.png"
                 alt="Kamili Group Logo"
-                className="w-20 h-20  object-cover shadow-lg"
+                className="w-20 h-20 object-cover shadow-lg"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ 
@@ -151,4 +151,12 @@ export function withPageTransition<P extends object>(
   TransitionedComponent.displayName = `withPageTransition(${WrappedComponent.displayName || WrappedComponent.name})`;
   
   return TransitionedComponent;
+}
+
+// Export types for backward compatibility (if needed elsewhere)
+export type TransitionType = 'fadeSlide' | 'slideUp' | 'scale';
+
+// Simple wrapper function for basic transitions (if needed)
+export function TransitionWrapper({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }

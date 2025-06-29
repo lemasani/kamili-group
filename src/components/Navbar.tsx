@@ -5,8 +5,13 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { TextRoll } from "./ui/text-roll"
 import homebanner from "@/assets/home-banner.jpg"
 import { navItems } from "@/data/navLinks"
-
-
+import { 
+  mobileMenuVariants, 
+  mobileItemVariants,
+  logoVariants,
+  navigationItemVariants,
+  underlineVariants
+} from "@/lib/animationVariants"
 
 export default function KamiliHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -57,34 +62,18 @@ export default function KamiliHeader() {
     }
   }
 
-  const mobileMenuVariants = {
-    closed: {
-      opacity: 0,
-      height: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut",
-      },
-    },
-    open: {
-      opacity: 1,
-      height: "auto",
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut",
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const mobileItemVariants = {
-    closed: { opacity: 0, x: -20 },
-    open: { opacity: 1, x: 0 },
-  }
-
   return (
     <div className="relative">
-      
+      {/* Navigation Progress Bar */}
+      {isNavigating && (
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-1 bg-amber-500 z-50"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: navProgress / 100 }}
+          transition={{ duration: 0.1 }}
+          style={{ transformOrigin: "left" }}
+        />
+      )}
 
       {/* Top Contact Bar */}
       <div className="bg-slate-800 text-white">
@@ -125,8 +114,9 @@ export default function KamiliHeader() {
             {/* Logo */}
             <motion.div
               className="flex items-center space-x-3"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              variants={logoVariants}
+              initial="initial"
+              whileHover="hover"
             >
               <button onClick={() => handleNavigation('/')} className="flex items-center space-x-3">
                 <img
@@ -148,7 +138,10 @@ export default function KamiliHeader() {
                       ? "text-amber-500" 
                       : "text-slate-700 hover:text-amber-500"
                   }`}
-                  whileHover={{ scale: 1.05 }}
+                  variants={navigationItemVariants}
+                  initial="initial"
+                  whileHover="hover"
+                  animate={location.pathname === item.href ? "active" : "initial"}
                   whileTap={{ scale: 0.95 }}
                   disabled={isNavigating}
                 >
@@ -157,13 +150,9 @@ export default function KamiliHeader() {
                     <motion.div
                       className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-500"
                       layoutId="navbar-underline"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 30,
-                      }}
+                      variants={underlineVariants}
+                      initial="initial"
+                      animate="animate"
                     />
                   )}
                 </motion.button>
