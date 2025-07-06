@@ -9,6 +9,7 @@ import ProjectsPage from "./Blocks/Project/ProjectListing";
 import ProjectDetails from "./Blocks/Project/ProjectDetails";
 import NotFound from "./Blocks/NotFound";
 import TeamPage from "./Blocks/Team";
+import ContactPage from './Blocks/Contact'
 
 // Create transitioned components for simple pages
 const ClientsPage = withPageTransition(() => (
@@ -24,11 +25,6 @@ const CoreValuesPage = withPageTransition(() => (
 ));
 
 
-const ContactPage = withPageTransition(() => (
-  <div className="min-h-screen flex items-center justify-center">
-    <h1 className="text-4xl font-bold text-primary">Contact Page</h1>
-  </div>
-));
 
 function AnimatedRoutes() {
   const location = useLocation();
