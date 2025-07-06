@@ -5,6 +5,8 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { withPageTransition } from '@/components/PageTransitions/TransitionWrapper'
 import { fadeInUp, staggerContainer } from '@/lib/animationVariants'
+import { Link } from 'react-router-dom'
+
 
 function ProjectsListingPage() {
   const projects = getAllProjects()
@@ -96,6 +98,7 @@ function ProjectsListingPage() {
                               {project.location}
                             </div>
                           )}
+                          <Link to={project.slug} >Read more</Link>
                         </div>
                         
                         
