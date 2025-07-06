@@ -28,11 +28,7 @@ const contactFormSchema = z.object({
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>;
 
-interface ContactUsFormProps {
-  onSubmit?: (data: ContactFormValues) => Promise<void>;
-}
-
-export default function ContactUsForm({ onSubmit }: ContactUsFormProps) {
+export default function ContactUsForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const form = useForm<ContactFormValues>({
@@ -50,13 +46,9 @@ export default function ContactUsForm({ onSubmit }: ContactUsFormProps) {
 
   const handleSubmit = async (data: ContactFormValues) => {
     try {
-      if (onSubmit) {
-        await onSubmit(data);
-      } else {
-        // Default behavior - simulate form submission
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        console.log('Form submitted:', data);
-      }
+      
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      console.log('Form submitted:', data);
       
       setIsSubmitted(true);
       form.reset();

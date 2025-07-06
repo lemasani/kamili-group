@@ -5,7 +5,6 @@ import { SectionHeader } from '@/components/SectionHeader';
 import { contactInfo, officeHours } from '@/data/contactInfo';
 import { staggerContainer, fadeInUp, fadeInLeft, fadeInRight } from '@/lib/animationVariants';
 import ContactUsForm from '@/components/contactUsForm';
-import type { ContactFormValues } from "@/components/contactUsForm";
 
 
 interface ContactSectionProps {
@@ -16,7 +15,6 @@ interface ContactSectionProps {
   showHeader?: boolean;
   showMap?: boolean;
   mapEmbedUrl?: string;
-  onSubmit?: (data: ContactFormValues) => Promise<void>;
 }
 
 export default function ContactSection({
@@ -27,7 +25,6 @@ export default function ContactSection({
   showHeader = true,
   showMap = true,
   mapEmbedUrl = "https://www.google.com/maps/dir//Tegeta+Nyuki+Dar+Es+Salaam+TZ,+35759/@-6.6595905,39.0988136,35302m/data=!3m2!1e3!4b1!4m8!4m7!1m0!1m5!1m1!1s0x185c57a97e2d7589:0x165d1ed201e70226!2m2!1d39.1812281!2d-6.6596182?entry=ttu&g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D",
-  onSubmit
 }: ContactSectionProps) {
 
   return (
@@ -146,7 +143,7 @@ export default function ContactSection({
                   </p>
                 </CardHeader>
                 <CardContent>
-                  <ContactUsForm onSubmit={onSubmit} />
+                  <ContactUsForm />
                 </CardContent>
               </Card>
             </motion.div>
