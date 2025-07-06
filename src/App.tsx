@@ -8,6 +8,7 @@ import { withPageTransition } from "./components/PageTransitions/TransitionWrapp
 import ProjectsPage from "./Blocks/Project/ProjectListing";
 import ProjectDetails from "./Blocks/Project/ProjectDetails";
 import NotFound from "./Blocks/NotFound";
+import TeamPage from "./Blocks/Team";
 
 // Create transitioned components for simple pages
 const ClientsPage = withPageTransition(() => (
@@ -22,11 +23,6 @@ const CoreValuesPage = withPageTransition(() => (
   </div>
 ));
 
-const TeamPage = withPageTransition(() => (
-  <div className="min-h-screen flex items-center justify-center">
-    <h1 className="text-4xl font-bold text-primary">Team Page</h1>
-  </div>
-));
 
 const ContactPage = withPageTransition(() => (
   <div className="min-h-screen flex items-center justify-center">
