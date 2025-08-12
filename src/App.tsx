@@ -10,6 +10,7 @@ import ProjectDetails from "./Blocks/Project/ProjectDetails";
 import NotFound from "./Blocks/NotFound";
 import TeamPage from "./Blocks/Team";
 import ContactPage from './Blocks/Contact'
+import GalleryPage from '@/Blocks/GalleryBlock.tsx';
 
 // Create transitioned components for simple pages
 const ClientsPage = withPageTransition(() => (
@@ -41,6 +42,7 @@ function AnimatedRoutes() {
         <Route path="/core-values" element={<CoreValuesPage />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/contact" element={<ContactPage />} />
+	      <Route path={'/gallery'} element={<GalleryPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
