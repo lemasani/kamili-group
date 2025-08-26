@@ -1,65 +1,61 @@
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Phone, Clock, MapPin, Eye } from "lucide-react"
-import { Link, useLocation } from "react-router-dom"
-import { TextRoll } from "./ui/text-roll"
-import homebanner from "@/assets/home-banner.jpg"
-import { navItems } from "@/data/navLinks"
-import { 
-  mobileMenuVariants, 
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Phone, Clock, MapPin, Eye } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { TextRoll } from "./ui/text-roll";
+import homebanner from "@/assets/home-banner.jpg";
+import { navItems } from "@/data/navLinks";
+import {
+  mobileMenuVariants,
   mobileItemVariants,
   logoVariants,
   navigationItemVariants,
-  underlineVariants
-} from "@/lib/animationVariants"
+  underlineVariants,
+} from "@/lib/animationVariants";
 
 export default function KamiliHeader() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const location = useLocation()
+  const location = useLocation();
 
-  const IsHomePage = location.pathname === "/"
+  const IsHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="relative">
-
       {/* Top Contact Bar */}
       <div className="bg-slate-800 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center justify-between py-2 text-sm lg:flex-row">
+          <div className="flex  items-center justify-between py-2 text-xs sm:text-sm flex-row lg:text-base">
             <div className="flex flex-col items-center space-y-1 lg:flex-row lg:space-x-8 lg:space-y-0">
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
                 <span>info@kamiligroup.co.tz</span>
               </div>
-              <div className="flex items-center space-x-2">
+                <div className="hidden sm:flex items-center space-x-2">
                 <Clock className="h-4 w-4" />
                 <span>Mon to Fri: 9:00am to 6:00pm</span>
-              </div>
+                </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4" />
                 <span>Tegeta, Dar Es Salaam</span>
               </div>
             </div>
             <motion.div
-              className="mt-2 flex items-center space-x-2 rounded bg-amber-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-amber-600 lg:mt-0"
+              className="mt-2 flex items-center space-x-2 rounded bg-amber-500 px-4 py-2 font-medium text-white transition-colors hover:bg-amber-600 lg:mt-0"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               <Eye className="h-4 w-4" />
-              <Link to={'/gallery'}>
-	              View Our Gallery
-			  </Link>
+              <Link to={"/gallery"}>View Our Gallery</Link>
             </motion.div>
           </div>
         </div>
@@ -67,7 +63,9 @@ export default function KamiliHeader() {
 
       {/* Main Navigation */}
       <motion.header
-        className={`sticky top-0 z-50 bg-white shadow-sm transition-all duration-300 ${isScrolled ? "shadow-md" : ""}`}
+        className={`sticky top-0 z-50 bg-white shadow-sm transition-all duration-300 ${
+          isScrolled ? "shadow-md" : ""
+        }`}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
@@ -95,17 +93,21 @@ export default function KamiliHeader() {
                   variants={navigationItemVariants}
                   initial="initial"
                   whileHover="hover"
-                  animate={location.pathname === item.href ? "active" : "initial"}
+                  animate={
+                    location.pathname === item.href ? "active" : "initial"
+                  }
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link
                     to={item.href}
-                    className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-                      location.pathname === item.href 
-                        ? "text-amber-500" 
+                    className={`relative px-4 py-2 transition-colors duration-200 ${
+                      location.pathname === item.href
+                        ? "text-amber-500"
                         : "text-slate-700 hover:text-amber-500"
                     }`}
-                    aria-current={location.pathname === item.href ? "page" : undefined}
+                    aria-current={
+                      location.pathname === item.href ? "page" : undefined
+                    }
                   >
                     {item.name}
                     {location.pathname === item.href && (
@@ -128,7 +130,11 @@ export default function KamiliHeader() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               whileTap={{ scale: 0.95 }}
             >
-              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </motion.button>
           </div>
 
@@ -148,12 +154,14 @@ export default function KamiliHeader() {
                       <Link
                         to={item.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block w-full text-left px-4 py-3 text-sm font-medium transition-colors duration-200 ${
+                        className={`block w-full px-4 py-3 text-left transition-colors duration-200 ${
                           location.pathname === item.href
                             ? "bg-amber-50 text-amber-500"
                             : "text-slate-700 hover:bg-slate-50 hover:text-amber-500"
                         }`}
-                        aria-current={location.pathname === item.href ? "page" : undefined}
+                        aria-current={
+                          location.pathname === item.href ? "page" : undefined
+                        }
                       >
                         {item.name}
                       </Link>
@@ -178,11 +186,11 @@ export default function KamiliHeader() {
           </div>
           <div className="relative z-10 flex h-full items-center justify-center">
             <div className="text-center text-white">
-              <TextRoll className="text-5xl md:text-5xl font-bold tracking-tight">
+              <TextRoll className="tracking-tight font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
                 Build with Kamili Group
               </TextRoll>
               <motion.p
-                className="mt-4 text-lg md:text-xl"
+                className="mt-4 text-base sm:text-lg md:text-xl"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -194,5 +202,5 @@ export default function KamiliHeader() {
         </section>
       )}
     </div>
-  )
+  );
 }
