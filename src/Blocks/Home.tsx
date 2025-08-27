@@ -7,7 +7,6 @@ import { Services } from '@/data/services';
 import { homeTestimonials, whyChooseUsData } from '@/data/homedata';
 import { Card, CardContent } from '@/components/ui/card';
 import { ProjectsSection } from '@/components/Sections/ProjectSection';
-import { recentProjects } from '@/data/projectsData';
 import { TestimonialsSection } from '@/components/Sections/TestimonialSection';
 import { staggerContainer, fadeInLeft, fadeInRight, fadeInUp } from '@/lib/animationVariants';
 import { Stats } from '@/data/Stats';
@@ -190,7 +189,8 @@ function Home() {
         badge="Our Work"
         title="Recent Projects"
         description="Take a look at some of our recently completed projects that showcase our commitment to quality and innovation."
-        projects={recentProjects}
+        limit={3}
+        showViewAllButton={true}
       />
 
       <TestimonialsSection

@@ -98,7 +98,7 @@ function ProjectsListingPage() {
                               {project.location}
                             </div>
                           )}
-                          <Link to={project.slug} >Read more</Link>
+                          <Link to={project.slug} className='text-secondary '>Read more</Link>
                         </div>
                         
                         

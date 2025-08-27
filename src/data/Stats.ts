@@ -17,7 +17,7 @@ export const Stats = [
   },
   {
     icon: Award,
-    value: 15,
+    value: 5,
     suffix: "+",
     label: "Years Experience",
     description: "Proven track record in construction industry"

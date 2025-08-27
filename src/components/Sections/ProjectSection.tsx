@@ -1,32 +1,30 @@
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import { SectionHeader } from '../SectionHeader';
-import { ProjectCard } from '../Cards/ProjectCard';
-import { fadeInUp, staggerContainer } from '@/lib/animationVariants';
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { SectionHeader } from "../SectionHeader";
+import { ProjectCard } from "../Cards/ProjectCard";
+import { fadeInUp, staggerContainer } from "@/lib/animationVariants";
+import { getAllProjects, type Project } from "@/lib/Projectloader";
 
 interface ProjectsSectionProps {
   badge?: string;
   title: string;
   description: string;
-  projects: Array<{
-    title: string;
-    location: string;
-    type: string;
-    image: string;
-    description: string;
-  }>;
+  limit?: number; // number of projects to display
   showViewAllButton?: boolean;
   className?: string;
 }
 
-export function ProjectsSection({ 
-  badge, 
-  title, 
-  description, 
-  projects, 
+export function ProjectsSection({
+  badge,
+  title,
+  description,
+  limit,
   showViewAllButton = true,
-  className = "py-16 bg-white" 
+  className = "py-16 bg-white",
 }: ProjectsSectionProps) {
+  const allProjects = getAllProjects();
+  const displayProjects = limit ? allProjects.slice(0, limit) : allProjects;
+
   return (
     <section className={className}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,8 +36,19 @@ export function ProjectsSection({
           initial="initial"
           animate="animate"
         >
-          {projects.map((project, index) => (
-            <ProjectCard key={index} {...project} variants={fadeInUp} />
+          {displayProjects.map((project) => (
+            <ProjectCard
+              key={project.slug}
+              title={project.title}
+              description={project.description}
+              thumbnail={project.thumbnail}
+              // Cast project to include an optional status field
+              category={(project as Project & { status?: string }).status || ""}
+              location={project.location || ""}
+              variants={fadeInUp}
+              slug={project.slug}
+              date={project.date}
+            />
           ))}
         </motion.div>
 
