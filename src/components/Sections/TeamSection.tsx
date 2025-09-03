@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 import { Phone, Instagram } from 'lucide-react';
 import { SectionHeader } from '../SectionHeader';
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { staggerContainer, fadeInUp } from '@/lib/animationVariants';
 import type { TeamMember } from '@/data/teamData';
+import { CTAVariants } from '../Call-to-action';
 
 
 
@@ -114,29 +114,15 @@ export default function TeamSection({
         </motion.div>
 
         {/* Call to Action */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <div className="bg-gradient-to-r from-primary/5 to-secondary/5 rounded-xl p-8">
-            <h3 className="text-2xl font-bold text-primary mb-4">
-              Ready to Work with Our Expert Team?
-            </h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Our experienced professionals are here to help bring your construction 
-              vision to life. Get in touch to discuss your project.
-            </p>
-            <Button 
-              size="lg"
-              className="bg-primary hover:bg-secondary text-white"
-              onClick={() => window.location.href = '/contact'}
-            >
-              Get Started Today
-            </Button>
-          </div>
-        </motion.div>
+        <div className="mt-10">
+
+          <CTAVariants.Contact
+            customTitle='Ready to Work with Our Expert Team?'
+            customDescription='Our experienced professionals are here to help bring your construction 
+                vision to life. Get in touch to discuss your project.'
+
+          />
+        </div>
       </div>
     </section>
   );

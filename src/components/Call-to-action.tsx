@@ -286,7 +286,7 @@ export const CTAVariants = {
           onClick: onCallClick || (() => window.location.href = 'tel:+255123456789')
         },
         {
-          label: "Request Quote",
+          label: "Mail us",
           icon: Mail,
           variant: "secondary",
           onClick: onEmailClick || (() => window.location.href = 'mailto:info@kamiligroup.co.tz')

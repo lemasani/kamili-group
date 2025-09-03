@@ -17,7 +17,7 @@ export const navItems: NavItem[] = [
   { name: "ABOUT US", href: "/about" },
   { name: "SERVICES", href: "/services" },
   { name: "PROJECTS", href: "/projects" },
-  { name: "CORE VALUES", href: "/core-values" },
+  // { name: "CORE VALUES", href: "/core-values" },
   { name: "OUR TEAM", href: "/team" },
   { name: "CONTACT US", href: "/contact" },
 ];

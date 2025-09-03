@@ -58,3 +58,9 @@ export const ZICImage2 = "https://res.cloudinary.com/deuwlmeyt/image/upload/v175
 export const ZICImage3 = "https://res.cloudinary.com/deuwlmeyt/image/upload/v1754980287/IMG_0949_hyfbwc.jpg"
 export const ZICImage4 = "https://res.cloudinary.com/deuwlmeyt/image/upload/v1754980284/WhatsApp_Image_2022-11-21_at_1.17.08_PM_nczue4.jpg"
 export const ZICImage5 = "https://res.cloudinary.com/deuwlmeyt/image/upload/v1754980283/WhatsApp_Image_2022-11-21_at_1.17.09_PM_1_ujeykf.jpg"
+
+
+// team 
+export const PascalImage= "https://res.cloudinary.com/deuwlmeyt/image/upload/v1756880278/paschalimage_vryjwr.jpg"
+export const AmedeusImage = "https://res.cloudinary.com/deuwlmeyt/image/upload/v1756880277/amedeusimage_n1hlxn.jpg"
+export const DenisImage = "https://res.cloudinary.com/deuwlmeyt/image/upload/v1756880282/denisimage_ixcqji.jpg"
