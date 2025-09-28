@@ -1,13 +1,9 @@
-import { withPageTransition } from "@/components/PageTransitions/TransitionWrapper";
 import ContactSection from "@/components/Sections/ContactSection";
 
-
-
 function ContactBlock() {
- 
   return (
     <div className="min-h-screen">
-      <ContactSection 
+      <ContactSection
         title="Get In Touch With Us"
         description="Ready to start your construction project? We're here to help you every step of the way. Contact us today for a free consultation."
         badge="Contact Us"
@@ -18,6 +14,4 @@ function ContactBlock() {
   );
 }
 
-const ContactPage = withPageTransition(ContactBlock);
-
-export default ContactPage;
+export default ContactBlock;

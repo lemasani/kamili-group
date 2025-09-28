@@ -1,27 +1,48 @@
-import { motion } from 'framer-motion';
-import { ArrowLeft, Home, Search, MapPin, Phone, Mail } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { withPageTransition } from '@/components/PageTransitions/TransitionWrapper';
-import { fadeInUp, staggerContainer, fadeInLeft, fadeInRight } from '@/lib/animationVariants';
+import { motion } from "framer-motion";
+import { ArrowLeft, Home, Search, MapPin, Phone, Mail } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+
+import {
+  fadeInUp,
+  staggerContainer,
+  fadeInLeft,
+  fadeInRight,
+} from "@/lib/animationVariants";
 
 function NotFoundPage() {
   const navigate = useNavigate();
 
   const popularPages = [
-    { name: 'Our Services', href: '/services', description: 'Comprehensive construction solutions' },
-    { name: 'Our Projects', href: '/projects', description: 'Portfolio of completed work' },
-    { name: 'About Us', href: '/about', description: 'Learn about Kamili Group' },
-    { name: 'Contact Us', href: '/contact', description: 'Get in touch with our team' },
+    {
+      name: "Our Services",
+      href: "/services",
+      description: "Comprehensive construction solutions",
+    },
+    {
+      name: "Our Projects",
+      href: "/projects",
+      description: "Portfolio of completed work",
+    },
+    {
+      name: "About Us",
+      href: "/about",
+      description: "Learn about Kamili Group",
+    },
+    {
+      name: "Contact Us",
+      href: "/contact",
+      description: "Get in touch with our team",
+    },
   ];
 
   const handleGoBack = () => {
     if (window.history.length > 1) {
       navigate(-1);
     } else {
-      navigate('/');
+      navigate("/");
     }
   };
 
@@ -37,53 +58,53 @@ function NotFoundPage() {
             animate="animate"
           >
             <motion.div variants={fadeInUp}>
-              <Badge variant="outline" className="mb-4 text-secondary border-secondary/20">
+              <Badge
+                variant="outline"
+                className="mb-4 text-secondary border-secondary/20"
+              >
                 Error 404
               </Badge>
             </motion.div>
 
             {/* Large 404 Display */}
-            <motion.div 
-              className="mb-8"
-              variants={fadeInUp}
-            >
+            <motion.div className="mb-8" variants={fadeInUp}>
               <h1 className="text-8xl md:text-9xl font-bold text-primary/20 leading-none">
                 404
               </h1>
             </motion.div>
 
-            <motion.h2 
+            <motion.h2
               className="text-4xl md:text-5xl font-bold mb-6 text-primary"
               variants={fadeInUp}
             >
               Page Not Found
             </motion.h2>
 
-            <motion.p 
+            <motion.p
               className="text-xl text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed"
               variants={fadeInUp}
             >
-              Oops! It seems like you've wandered off the construction site. 
-              The page you're looking for doesn't exist or has been moved.
+              Oops! It seems like you've wandered off the construction site. The
+              page you're looking for doesn't exist or has been moved.
             </motion.p>
 
             {/* Action Buttons */}
-            <motion.div 
+            <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
               variants={fadeInUp}
             >
-              <Button 
-                size="lg" 
-                onClick={() => navigate('/')}
+              <Button
+                size="lg"
+                onClick={() => navigate("/")}
                 className="min-w-[180px]"
               >
                 <Home className="mr-2 h-5 w-5" />
                 Go to Homepage
               </Button>
-              
-              <Button 
-                variant="outline" 
-                size="lg" 
+
+              <Button
+                variant="outline"
+                size="lg"
                 onClick={handleGoBack}
                 className="min-w-[180px]"
               >
@@ -120,7 +141,7 @@ function NotFoundPage() {
           >
             {popularPages.map((page, index) => (
               <motion.div key={index} variants={fadeInUp}>
-                <Card 
+                <Card
                   className="h-full bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer border-0 shadow-lg"
                   onClick={() => navigate(page.href)}
                 >
@@ -158,39 +179,46 @@ function NotFoundPage() {
                 Need Help Finding Something?
               </h3>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Don't worry! Our team is here to help you find what you're looking for. 
-                Whether you need information about our construction services, want to 
-                discuss a project, or have any questions, we're just a call or email away.
+                Don't worry! Our team is here to help you find what you're
+                looking for. Whether you need information about our construction
+                services, want to discuss a project, or have any questions,
+                we're just a call or email away.
               </p>
-              
+
               <div className="space-y-4">
                 <div className="flex items-center">
                   <Phone className="h-5 w-5 text-secondary mr-3" />
-                  <span className="text-gray-700">Call us at +255 123 456 789</span>
+                  <span className="text-gray-700">
+                    Call us at +255 123 456 789
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="h-5 w-5 text-secondary mr-3" />
-                  <span className="text-gray-700">Email us at info@kamiligroup.co.tz</span>
+                  <span className="text-gray-700">
+                    Email us at info@kamiligroup.co.tz
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="h-5 w-5 text-secondary mr-3" />
-                  <span className="text-gray-700">Visit us in Tegeta, Dar Es Salaam</span>
+                  <span className="text-gray-700">
+                    Visit us in Tegeta, Dar Es Salaam
+                  </span>
                 </div>
               </div>
 
               <div className="mt-8">
-                <Button 
-                  size="lg" 
-                  onClick={() => navigate('/contact')}
+                <Button
+                  size="lg"
+                  onClick={() => navigate("/contact")}
                   className="mr-4"
                 >
                   <Mail className="mr-2 h-5 w-5" />
                   Contact Us
                 </Button>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   size="lg"
-                  onClick={() => window.location.href = 'tel:+255123456789'}
+                  onClick={() => (window.location.href = "tel:+255123456789")}
                 >
                   <Phone className="mr-2 h-5 w-5" />
                   Call Now
@@ -205,14 +233,14 @@ function NotFoundPage() {
                   <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-full flex items-center justify-center">
                     <Search className="h-16 w-16 text-secondary" />
                   </div>
-                  
+
                   <h4 className="text-xl font-semibold text-primary mb-4">
                     Search Tip
                   </h4>
                   <p className="text-gray-600 leading-relaxed">
-                    Try using our navigation menu or contact us directly. 
-                    We're always ready to help you find the information you need 
-                    about our construction services and projects.
+                    Try using our navigation menu or contact us directly. We're
+                    always ready to help you find the information you need about
+                    our construction services and projects.
                   </p>
                 </div>
 
@@ -223,7 +251,7 @@ function NotFoundPage() {
                   transition={{
                     duration: 3,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
                   }}
                 />
                 <motion.div
@@ -233,7 +261,7 @@ function NotFoundPage() {
                     duration: 2.5,
                     repeat: Infinity,
                     ease: "easeInOut",
-                    delay: 1
+                    delay: 1,
                   }}
                 />
               </div>
@@ -256,11 +284,11 @@ function NotFoundPage() {
             </h4>
             <div className="flex flex-wrap justify-center gap-4">
               {[
-                { name: 'Home', href: '/' },
-                { name: 'About', href: '/about' },
-                { name: 'Services', href: '/services' },
-                { name: 'Projects', href: '/projects' },
-                { name: 'Contact', href: '/contact' },
+                { name: "Home", href: "/" },
+                { name: "About", href: "/about" },
+                { name: "Services", href: "/services" },
+                { name: "Projects", href: "/projects" },
+                { name: "Contact", href: "/contact" },
               ].map((link, index) => (
                 <motion.button
                   key={index}
@@ -280,5 +308,4 @@ function NotFoundPage() {
   );
 }
 
-const NotFound = withPageTransition(NotFoundPage);
-export default NotFound;
+export default NotFoundPage;

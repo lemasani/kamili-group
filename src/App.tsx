@@ -1,10 +1,8 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RootLayout from "./layout/RootLayout";
 import About from "./Blocks/About";
 import Home from "./Blocks/Home";
 import ServiceBlock from "./Blocks/Services";
-import { withPageTransition } from "./components/PageTransitions/TransitionWrapper";
 import ProjectsPage from "./Blocks/Project/ProjectListing";
 import ProjectDetails from "./Blocks/Project/ProjectDetails";
 import NotFound from "./Blocks/NotFound";
@@ -13,41 +11,37 @@ import ContactPage from "./Blocks/Contact";
 import GalleryPage from "@/Blocks/GalleryBlock.tsx";
 import useSEO from "./hooks/useSEO";
 
-// Create transitioned components for simple pages
-const ClientsPage = withPageTransition(() => (
+// Simple page components without transitions
+const ClientsPage = () => (
   <div className="min-h-screen flex items-center justify-center">
     <h1 className="text-4xl font-bold text-primary">Clients Page</h1>
   </div>
-));
+);
 
-const CoreValuesPage = withPageTransition(() => (
+const CoreValuesPage = () => (
   <div className="min-h-screen flex items-center justify-center">
     <h1 className="text-4xl font-bold text-primary">Core Values Page</h1>
   </div>
-));
+);
 
-function AnimatedRoutes() {
-  const location = useLocation();
-
+function AppRoutes() {
   // Initialize SEO for all pages
   useSEO();
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/services" element={<ServiceBlock />} />
-        <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/projects/:slug" element={<ProjectDetails />} />
-        <Route path="/clients" element={<ClientsPage />} />
-        <Route path="/core-values" element={<CoreValuesPage />} />
-        <Route path="/team" element={<TeamPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path={"/gallery"} element={<GalleryPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </AnimatePresence>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/services" element={<ServiceBlock />} />
+      <Route path="/projects" element={<ProjectsPage />} />
+      <Route path="/projects/:slug" element={<ProjectDetails />} />
+      <Route path="/clients" element={<ClientsPage />} />
+      <Route path="/core-values" element={<CoreValuesPage />} />
+      <Route path="/team" element={<TeamPage />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path={"/gallery"} element={<GalleryPage />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 
@@ -55,7 +49,7 @@ function App() {
   return (
     <BrowserRouter>
       <RootLayout>
-        <AnimatedRoutes />
+        <AppRoutes />
       </RootLayout>
     </BrowserRouter>
   );

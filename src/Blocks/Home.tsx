@@ -1,21 +1,31 @@
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import { StatsSection } from '@/components/Sections/StatsSection';
-import { ServicesSection } from '@/components/Sections/ServiceSection';
-import { Services } from '@/data/services';
-import { homeTestimonials, whyChooseUsData } from '@/data/homedata';
-import { Card, CardContent } from '@/components/ui/card';
-import { ProjectsSection } from '@/components/Sections/ProjectSection';
-import { TestimonialsSection } from '@/components/Sections/TestimonialSection';
-import { staggerContainer, fadeInLeft, fadeInRight, fadeInUp } from '@/lib/animationVariants';
-import { Stats } from '@/data/Stats';
-import { useNavigate } from 'react-router-dom';
-import { CTAVariants } from '@/components/Call-to-action';
-import { withPageTransition } from '@/components/PageTransitions/TransitionWrapper';
-import { Link } from 'react-router-dom';
-import { CompletedBuildingImage, ConstructionSiteImage, ModernBuildingImage, TeamAtWorkImage } from '@/data/Image';
-import ClientSliderSection from '@/components/Sections/ClientSliderSection';
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { StatsSection } from "@/components/Sections/StatsSection";
+import { ServicesSection } from "@/components/Sections/ServiceSection";
+import { Services } from "@/data/services";
+import { homeTestimonials, whyChooseUsData } from "@/data/homedata";
+import { Card, CardContent } from "@/components/ui/card";
+import { ProjectsSection } from "@/components/Sections/ProjectSection";
+import { TestimonialsSection } from "@/components/Sections/TestimonialSection";
+import {
+  staggerContainer,
+  fadeInLeft,
+  fadeInRight,
+  fadeInUp,
+} from "@/lib/animationVariants";
+import { Stats } from "@/data/Stats";
+import { useNavigate } from "react-router-dom";
+import { CTAVariants } from "@/components/Call-to-action";
+
+import { Link } from "react-router-dom";
+import {
+  CompletedBuildingImage,
+  ConstructionSiteImage,
+  ModernBuildingImage,
+  TeamAtWorkImage,
+} from "@/data/Image";
+import ClientSliderSection from "@/components/Sections/ClientSliderSection";
 
 // Create motion component from Link
 const MotionLink = motion(Link);
@@ -35,34 +45,32 @@ function Home() {
             animate="animate"
           >
             <motion.div variants={fadeInLeft}>
-              <Badge variant="outline" className="mb-4 text-secondary border-secondary/20">
+              <Badge
+                variant="outline"
+                className="mb-4 text-secondary border-secondary/20"
+              >
                 About Kamili Group
               </Badge>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
-                Building Excellence 
+                Building Excellence
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Kamili is a design and construction firm founded by
-                a team of visionary Tanzanians whose inspiration is
-                derived from a fixation with getting things exactly
-                the way the customer wants. The Swahili word
-                "Kamili" which translates "Precise" speaks our
-                desire to not just satisfy our customers' needs but to
-                do so with the exactness that is expected. We
-                specialize in building custom made dreams.
-                Since our inception, we have
-                endeavored to be a cut above our
-                peers.
+                Kamili is a design and construction firm founded by a team of
+                visionary Tanzanians whose inspiration is derived from a
+                fixation with getting things exactly the way the customer wants.
+                The Swahili word "Kamili" which translates "Precise" speaks our
+                desire to not just satisfy our customers' needs but to do so
+                with the exactness that is expected. We specialize in building
+                custom made dreams. Since our inception, we have endeavored to
+                be a cut above our peers.
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Our philosophy is hinged on three principles of
-                design and implementation, namely imagination,
-                originality and realization. On one hand, we view
-                our customers as highly inspired people who are
-                looking to achieve their dreams and on the other
-                hand, we see ourselves as facilitators of those goals,
-                striving continually for excellence in every project
-                we do.
+                Our philosophy is hinged on three principles of design and
+                implementation, namely imagination, originality and realization.
+                On one hand, we view our customers as highly inspired people who
+                are looking to achieve their dreams and on the other hand, we
+                see ourselves as facilitators of those goals, striving
+                continually for excellence in every project we do.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <MotionLink
@@ -133,7 +141,7 @@ function Home() {
         limit={4}
         showViewMoreServices={true}
         viewMoreText="Explore All Services"
-        onViewMoreClick={() => navigate('/services')}
+        onViewMoreClick={() => navigate("/services")}
         gridCols="auto"
         compact={false}
       />
@@ -151,8 +159,9 @@ function Home() {
               Why Choose Kamili Group?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We combine experience, expertise, and innovation to deliver construction projects 
-              that exceed expectations and stand the test of time.
+              We combine experience, expertise, and innovation to deliver
+              construction projects that exceed expectations and stand the test
+              of time.
             </p>
           </motion.div>
 
@@ -200,16 +209,14 @@ function Home() {
       />
 
       {/* Call to Action Section - Using new CTA component */}
-      <CTAVariants.Contact 
+      <CTAVariants.Contact
         customTitle="Ready to Start Your Project?"
         customDescription="Let's discuss your construction needs and bring your vision to life. Contact us today for a free consultation and quote."
-        onCallClick={() => window.location.href = 'tel:+255123456789'}
-        onEmailClick={() => navigate('/contact')}
+        onCallClick={() => (window.location.href = "tel:+255123456789")}
+        onEmailClick={() => navigate("/contact")}
       />
     </div>
   );
 }
 
-// Export the component wrapped with the HOC
-const HomePage = withPageTransition(Home);
-export default HomePage;
+export default Home;

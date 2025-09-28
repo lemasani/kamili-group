@@ -17,7 +17,7 @@ import {
 import { CTAVariants } from "@/components/Call-to-action";
 import { useNavigate } from "react-router-dom";
 import CurtainrodSvg from "@/assets/curtain-rod-forkend.svg";
-import { withPageTransition } from "@/components/PageTransitions/TransitionWrapper";
+
 import { ServicesSection } from "@/components/Sections/ServiceSection";
 import SEO from "@/components/SEO";
 import { createServiceStructuredData } from "@/lib/seo";
@@ -298,6 +298,4 @@ function ServiceBlock() {
   );
 }
 
-const Service = withPageTransition(ServiceBlock);
-
-export default Service;
+export default ServiceBlock;

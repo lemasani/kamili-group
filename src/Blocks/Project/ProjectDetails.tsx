@@ -5,7 +5,7 @@ import { MDXContent } from "@/components/MDXContent";
 import { getProjectBySlug } from "@/lib/Projectloader";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { withPageTransition } from "@/components/PageTransitions/TransitionWrapper";
+
 import { CTAVariants } from "@/components/Call-to-action";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { Suspense } from "react";
@@ -164,5 +164,4 @@ function ProjectDetailsPage() {
   );
 }
 
-const ProjectDetails = withPageTransition(ProjectDetailsPage);
-export default ProjectDetails;
+export default ProjectDetailsPage;
