@@ -9,9 +9,9 @@ import ProjectsPage from "./Blocks/Project/ProjectListing";
 import ProjectDetails from "./Blocks/Project/ProjectDetails";
 import NotFound from "./Blocks/NotFound";
 import TeamPage from "./Blocks/Team";
-import ContactPage from './Blocks/Contact'
-import GalleryPage from '@/Blocks/GalleryBlock.tsx';
-import useSEO from './hooks/useSEO';
+import ContactPage from "./Blocks/Contact";
+import GalleryPage from "@/Blocks/GalleryBlock.tsx";
+import useSEO from "./hooks/useSEO";
 
 // Create transitioned components for simple pages
 const ClientsPage = withPageTransition(() => (
@@ -26,11 +26,9 @@ const CoreValuesPage = withPageTransition(() => (
   </div>
 ));
 
-
-
 function AnimatedRoutes() {
   const location = useLocation();
-  
+
   // Initialize SEO for all pages
   useSEO();
 
@@ -46,7 +44,7 @@ function AnimatedRoutes() {
         <Route path="/core-values" element={<CoreValuesPage />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/contact" element={<ContactPage />} />
-	      <Route path={'/gallery'} element={<GalleryPage />} />
+        <Route path={"/gallery"} element={<GalleryPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>

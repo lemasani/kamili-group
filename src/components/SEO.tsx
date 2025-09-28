@@ -1,13 +1,13 @@
-import React from 'react';
-import useSEO from '../hooks/useSEO';
-import type { SEOData } from '../lib/seo';
+import React from "react";
+import useSEO from "../hooks/useSEO";
+import type { SEOData } from "../lib/seo";
 
 interface SEOProps {
   title?: string;
   description?: string;
   keywords?: string;
   image?: string;
-  type?: 'website' | 'article';
+  type?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
   author?: string;
@@ -29,10 +29,10 @@ export default function SEO({
   section,
   structuredData,
   structuredDataId,
-  children
+  children,
 }: SEOProps) {
   const customSEO: Partial<SEOData> = {};
-  
+
   if (title) customSEO.title = title;
   if (description) customSEO.description = description;
   if (keywords) customSEO.keywords = keywords;
@@ -46,7 +46,7 @@ export default function SEO({
   useSEO({
     customSEO: Object.keys(customSEO).length > 0 ? customSEO : undefined,
     structuredData,
-    structuredDataId
+    structuredDataId,
   });
 
   return <>{children}</>;
