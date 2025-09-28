@@ -10,13 +10,30 @@ import { useNavigate } from 'react-router-dom';
 import CurtainrodSvg from '@/assets/curtain-rod-forkend.svg';
 import { withPageTransition } from '@/components/PageTransitions/TransitionWrapper';
 import { ServicesSection } from '@/components/Sections/ServiceSection';
+import SEO from '@/components/SEO';
+import { createServiceStructuredData } from '@/lib/seo';
 
 function ServiceBlock() {
   const navigate = useNavigate();
   const featuredService = Services[0]; // Design and Consultations as featured
 
+  // Create structured data for all services
+  const servicesStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": Services.map((service, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": createServiceStructuredData(service)
+    }))
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO
+        structuredData={servicesStructuredData}
+        structuredDataId="services-schema"
+      />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -166,7 +183,7 @@ function ServiceBlock() {
                 {/* SVG Divider between steps */}
                 {index < serviceProcess.length - 1 && (
                   <motion.div
-                  className="hidden md:block absolute top-8 left-[50%] w-full h-6 flex items-center justify-center"
+                  className="hidden md:flex absolute top-8 left-[50%] w-full h-6 items-center justify-center"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ 

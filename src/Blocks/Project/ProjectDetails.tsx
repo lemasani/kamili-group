@@ -9,6 +9,8 @@ import { withPageTransition } from '@/components/PageTransitions/TransitionWrapp
 import { CTAVariants } from '@/components/Call-to-action'
 import ErrorBoundary from '@/components/ErrorBoundary'
 import { Suspense } from 'react'
+import SEO from '@/components/SEO'
+import { createProjectStructuredData } from '@/lib/seo'
 
 function ProjectDetailsPage() {
   const { slug } = useParams()
@@ -37,6 +39,17 @@ function ProjectDetailsPage() {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title={`${project.title} - Construction Project | Kamili Group`}
+        description={project.description}
+        keywords={`${project.category || 'construction'}, Tanzania construction project, ${project.location || 'building project'}, Kamili Group portfolio`}
+        image={project.thumbnail}
+        type="article"
+        publishedTime={project.date}
+        section="Construction Projects"
+        structuredData={createProjectStructuredData(project)}
+        structuredDataId="project-schema"
+      />
       {/* Hero Section */}
       <section className="relative h-96 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0 bg-black/20" />

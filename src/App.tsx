@@ -11,6 +11,7 @@ import NotFound from "./Blocks/NotFound";
 import TeamPage from "./Blocks/Team";
 import ContactPage from './Blocks/Contact'
 import GalleryPage from '@/Blocks/GalleryBlock.tsx';
+import useSEO from './hooks/useSEO';
 
 // Create transitioned components for simple pages
 const ClientsPage = withPageTransition(() => (
@@ -29,6 +30,9 @@ const CoreValuesPage = withPageTransition(() => (
 
 function AnimatedRoutes() {
   const location = useLocation();
+  
+  // Initialize SEO for all pages
+  useSEO();
 
   return (
     <AnimatePresence mode="wait" initial={false}>

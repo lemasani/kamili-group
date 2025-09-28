@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Disallow admin or private directories (if any)
+Disallow: /admin/
+Disallow: /private/
+
+# Allow all search engines
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://kamiligroup.co.tz/sitemap.xml
+
+# Specific directives for major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Block specific file types if needed
+Disallow: *.pdf$
+Disallow: *.doc$
+Disallow: *.docx$

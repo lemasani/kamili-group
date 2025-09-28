@@ -5,9 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && npm run generate-seo && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-seo": "node scripts/generate-seo.js",
+    "validate-seo": "node scripts/validate-seo.js",
+    "build:seo": "npm run generate-seo && npm run build"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
