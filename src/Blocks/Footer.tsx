@@ -1,9 +1,10 @@
-import { quickLinks } from '@/data/navLinks';
-import { motion } from 'framer-motion';
-import { 
-  MapPin, 
-  Phone, 
-  Mail, 
+import { quickLinks } from "@/data/navLinks";
+import { Services } from "@/data/services";
+import { motion } from "framer-motion";
+import {
+  MapPin,
+  Phone,
+  Mail,
   Clock,
   Facebook,
   Twitter,
@@ -11,42 +12,37 @@ import {
   Linkedin,
   Youtube,
   ArrowRight,
-} from 'lucide-react';
+} from "lucide-react";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
+  transition: { duration: 0.6 },
 };
 
 const staggerContainer = {
   animate: {
     transition: {
-      staggerChildren: 0.1
-    }
-  }
+      staggerChildren: 0.1,
+    },
+  },
 };
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
- 
-
-  const services = [
-    { name: 'General Construction', href: '/services#general-construction' },
-    { name: 'Project Management', href: '/services#project-management' },
-    { name: 'Architectural Design', href: '/services#architectural-design' },
-    { name: 'Engineering Consulting', href: '/services#engineering' },
-    { name: 'Interior Design', href: '/services#interior-design' },
-    { name: 'Maintenance Services', href: '/services#maintenance' }
-  ];
+  // Convert services data to footer format with proper anchor links
+  const footerServices = Services.map((service) => ({
+    name: service.title,
+    href: `/services#${service.title.toLowerCase().replace(/\s+/g, "-")}`,
+  }));
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Youtube, href: '#', label: 'YouTube' }
+    { icon: Facebook, href: "#", label: "Facebook" },
+    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Instagram, href: "#", label: "Instagram" },
+    { icon: Linkedin, href: "#", label: "LinkedIn" },
+    { icon: Youtube, href: "#", label: "YouTube" },
   ];
 
   return (
@@ -66,16 +62,19 @@ export default function Footer() {
                 <img src="/logo-k-white-bg.png" alt="Kamili Group Logo" />
               </div>
               <p className="text-gray-300 text-sm leading-relaxed mb-6">
-                Building excellence for over 15 years. We are committed to delivering 
-                high-quality construction services that exceed expectations and create 
-                lasting value for our clients and communities.
+                Building excellence for over 15 years. We are committed to
+                delivering high-quality construction services that exceed
+                expectations and create lasting value for our clients and
+                communities.
               </p>
             </div>
           </motion.div>
 
           {/* Quick Links Column */}
           <motion.div variants={fadeInUp}>
-            <h3 className="text-lg font-semibold text-white mb-6">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-white mb-6">
+              Quick Links
+            </h3>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
@@ -95,9 +94,11 @@ export default function Footer() {
 
           {/* Services Column */}
           <motion.div variants={fadeInUp}>
-            <h3 className="text-lg font-semibold text-white mb-6">Our Services</h3>
+            <h3 className="text-lg font-semibold text-white mb-6">
+              Our Services
+            </h3>
             <ul className="space-y-3">
-              {services.map((service, index) => (
+              {footerServices.map((service, index) => (
                 <li key={index}>
                   <a
                     href={service.href}
@@ -115,14 +116,17 @@ export default function Footer() {
 
           {/* Contact Info Column */}
           <motion.div variants={fadeInUp}>
-            <h3 className="text-lg font-semibold text-white mb-6">Get In Touch</h3>
+            <h3 className="text-lg font-semibold text-white mb-6">
+              Get In Touch
+            </h3>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
                 <div>
                   <div className="text-white font-medium">Our Office</div>
                   <div className="text-gray-300 text-sm">
-                    Tegeta, Dar Es Salaam<br />
+                    Tegeta, Dar Es Salaam
+                    <br />
                     Tanzania
                   </div>
                 </div>
@@ -140,7 +144,9 @@ export default function Footer() {
                 <Mail className="h-5 w-5 text-secondary flex-shrink-0" />
                 <div>
                   <div className="text-white font-medium">Email Us</div>
-                  <div className="text-gray-300 text-sm">info@kamiligroup.co.tz</div>
+                  <div className="text-gray-300 text-sm">
+                    info@kamiligroup.co.tz
+                  </div>
                 </div>
               </div>
 
@@ -149,7 +155,8 @@ export default function Footer() {
                 <div>
                   <div className="text-white font-medium">Working Hours</div>
                   <div className="text-gray-300 text-sm">
-                    Mon - Fri: 9:00 AM - 6:00 PM<br />
+                    Mon - Fri: 9:00 AM - 6:00 PM
+                    <br />
                     Sat: 9:00 AM - 2:00 PM
                   </div>
                 </div>
@@ -185,13 +192,22 @@ export default function Footer() {
               © {currentYear} Kamili Group. All rights reserved.
             </div>
             <div className="flex flex-wrap items-center space-x-6 text-sm">
-              <a href="/privacy" className="text-gray-400 hover:text-secondary transition-colors duration-200">
+              <a
+                href="/privacy"
+                className="text-gray-400 hover:text-secondary transition-colors duration-200"
+              >
                 Privacy Policy
               </a>
-              <a href="/terms" className="text-gray-400 hover:text-secondary transition-colors duration-200">
+              <a
+                href="/terms"
+                className="text-gray-400 hover:text-secondary transition-colors duration-200"
+              >
                 Terms of Service
               </a>
-              <a href="/sitemap" className="text-gray-400 hover:text-secondary transition-colors duration-200">
+              <a
+                href="/sitemap"
+                className="text-gray-400 hover:text-secondary transition-colors duration-200"
+              >
                 Sitemap
               </a>
             </div>
