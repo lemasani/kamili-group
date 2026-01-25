@@ -64,13 +64,10 @@ export default function Footer() {
             {/* Logo */}
             <div className="flex items-center gap-3">
               <img
-                src="/logo.png"
+                src="/logo-k-white-bg.png"
                 alt="Kamili Group Logo"
                 className="h-20 w-30 rounded-full"
               />
-              <h2 className="text-xl font-black text-white uppercase tracking-tight">
-                Kamili <span className="text-primary">Group</span>
-              </h2>
             </div>
 
             <p className="text-sm leading-relaxed">
