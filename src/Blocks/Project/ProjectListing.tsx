@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Calendar, MapPin } from "lucide-react";
 import { getAllProjects } from "@/lib/Projectloader";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import { withPageTransition } from "@/components/PageTransitions/TransitionWrapper";
 import { fadeInUp, staggerContainer } from "@/lib/animationVariants";
 import { Link } from "react-router-dom";

@@ -71,9 +71,6 @@ export default function KamiliHeader() {
               alt="Kamili Group Logo"
               className="h-20 w-30 rounded-full"
             />
-            <h1 className="text-xl md:text-2xl font-black tracking-tight text-slate-900 dark:text-white uppercase">
-              Kamili <span className="text-primary">Group</span>
-            </h1>
           </Link>
 
           {/* Desktop Navigation */}

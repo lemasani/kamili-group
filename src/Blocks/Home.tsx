@@ -21,14 +21,9 @@ import { withPageTransition } from "@/components/PageTransitions/TransitionWrapp
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import homebanner from "@/assets/home-banner.jpg";
-import {
-  ConstructionSiteImage,
-  CompletedBuildingImage,
-  CFAORenovationImage1,
-  BlueCoastImage1,
-  HouseWazoHillImage1,
-} from "@/data/Image";
+import { ConstructionSiteImage } from "@/data/Image";
 import ClientSliderSection from "@/components/Sections/ClientSliderSection";
+import { getAllProjects } from "@/lib/Projectloader";
 
 // Animation variants
 const fadeInUp = {
@@ -84,34 +79,6 @@ const services = [
     title: "Facility Maintenance",
     description:
       "Comprehensive upkeep and technical support ensuring long-term value for your assets.",
-  },
-];
-
-// Projects data
-const projects = [
-  {
-    title: "Dar Es Salaam Business Center",
-    category: "Commercial",
-    status: "Completed",
-    description:
-      "Modern 12-story office complex with integrated smart systems.",
-    image: CompletedBuildingImage,
-  },
-  {
-    title: "Kilimanjaro Steel Foundry",
-    category: "Industrial",
-    status: "Ongoing",
-    description:
-      "Specialized structural fabrication for heavy industrial processing.",
-    image: CFAORenovationImage1,
-  },
-  {
-    title: "Mbweni Heights Estate",
-    category: "Residential",
-    status: "Completed",
-    description:
-      "Premium residential enclave featuring sustainable architecture.",
-    image: BlueCoastImage1,
   },
 ];
 
@@ -172,11 +139,18 @@ function Home() {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState<
     "all" | "completed" | "ongoing"
-  >("completed");
+  >("all");
 
-  const filteredProjects = projects.filter((project) => {
+  // Get all projects from the project loader
+  const allProjects = getAllProjects();
+
+  // Limit to first 6 projects for homepage
+  const limitedProjects = allProjects.slice(0, 6);
+
+  const filteredProjects = limitedProjects.filter((project) => {
     if (activeFilter === "all") return true;
-    return project.status.toLowerCase() === activeFilter;
+    // Match the status from project frontmatter (lowercase: "completed", "ongoing")
+    return project.status?.toLowerCase() === activeFilter;
   });
 
   return (
@@ -209,7 +183,9 @@ function Home() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <span className="size-2 bg-secondary rounded-full animate-pulse" />
-              <p className="text-secondary">Engineering the future of Tanzania</p>
+              <p className="text-secondary">
+                Engineering the future of Tanzania
+              </p>
             </motion.div>
 
             {/* Headline */}
@@ -515,45 +491,48 @@ function Home() {
             viewport={{ once: true }}
           >
             {filteredProjects.map((project, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className="group relative overflow-hidden rounded-xl bg-slate-200 aspect-[4/5]"
-              >
-                {/* Background Image */}
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${project.image})` }}
-                />
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
+              <Link to={`/projects/${project.slug}`} key={index}>
+                <motion.div
+                  variants={fadeInUp}
+                  className="group relative overflow-hidden rounded-xl bg-slate-200 aspect-[4/5]"
+                >
+                  {/* Background Image */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                    style={{ backgroundImage: `url(${project.thumbnail})` }}
+                  />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
 
-                {/* Status Badge */}
-                <div className="absolute top-4 right-4">
-                  <span
-                    className={`text-white text-[10px] font-black uppercase px-3 py-1 rounded-full ${
-                      project.status === "Completed"
-                        ? "bg-emerald-500"
-                        : "bg-primary"
-                    }`}
-                  >
-                    {project.status}
-                  </span>
-                </div>
+                  {/* Status Badge */}
+                  {project.status && (
+                    <div className="absolute top-4 right-4">
+                      <span
+                        className={`text-white text-[10px] font-black uppercase px-3 py-1 rounded-full ${
+                          project.status.toLowerCase() === "completed"
+                            ? "bg-emerald-500"
+                            : "bg-primary"
+                        }`}
+                      >
+                        {project.status}
+                      </span>
+                    </div>
+                  )}
 
-                {/* Content */}
-                <div className="absolute bottom-0 p-6 md:p-8 w-full">
-                  <p className="text-secondary text-xs font-bold uppercase tracking-widest mb-2">
-                    {project.category}
-                  </p>
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-slate-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {project.description}
-                  </p>
-                </div>
-              </motion.div>
+                  {/* Content */}
+                  <div className="absolute bottom-0 p-6 md:p-8 w-full">
+                    <p className="text-secondary text-xs font-bold uppercase tracking-widest mb-2">
+                      {project.category || "Project"}
+                    </p>
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-slate-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {project.description}
+                    </p>
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </motion.div>
 
@@ -634,19 +613,14 @@ function Home() {
               {/* Trust Indicators */}
               <div className="flex items-center gap-6 pt-4">
                 <div className="flex -space-x-3">
-                  <div
-                    className="size-10 md:size-12 rounded-full border-2 border-slate-900 bg-slate-300 bg-cover"
-                    style={{ backgroundImage: `url(${HouseWazoHillImage1})` }}
-                  />
-                  <div
-                    className="size-10 md:size-12 rounded-full border-2 border-slate-900 bg-slate-300 bg-cover"
-                    style={{ backgroundImage: `url(${CFAORenovationImage1})` }}
-                  />
-                  <div
-                    className="size-10 md:size-12 rounded-full border-2 border-slate-900 bg-slate-300 bg-cover"
-                    style={{ backgroundImage: `url(${BlueCoastImage1})` }}
-                  />
-                </div>primary
+                  {allProjects.slice(0, 3).map((project, idx) => (
+                    <div
+                      key={idx}
+                      className="size-10 md:size-12 rounded-full border-2 border-slate-900 bg-slate-300 bg-cover"
+                      style={{ backgroundImage: `url(${project.thumbnail})` }}
+                    />
+                  ))}
+                </div>
                 <div>
                   <p className="text-sm font-bold">
                     Trusted by over 50+ partners
