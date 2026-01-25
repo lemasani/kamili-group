@@ -1,15 +1,14 @@
-import { motion } from 'framer-motion'
-import { Calendar, MapPin } from 'lucide-react'
-import { getAllProjects } from '@/lib/Projectloader'
-import { Badge } from '@/components/ui/badge'
-import { Card, CardContent } from '@/components/ui/card'
-import { withPageTransition } from '@/components/PageTransitions/TransitionWrapper'
-import { fadeInUp, staggerContainer } from '@/lib/animationVariants'
-import { Link } from 'react-router-dom'
-
+import { motion } from "framer-motion";
+import { Calendar, MapPin } from "lucide-react";
+import { getAllProjects } from "@/lib/Projectloader";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { withPageTransition } from "@/components/PageTransitions/TransitionWrapper";
+import { fadeInUp, staggerContainer } from "@/lib/animationVariants";
+import { Link } from "react-router-dom";
 
 function ProjectsListingPage() {
-  const projects = getAllProjects()
+  const projects = getAllProjects();
 
   return (
     <div className="min-h-screen">
@@ -22,15 +21,19 @@ function ProjectsListingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <Badge variant="outline" className="mb-4 text-secondary border-secondary/20">
+            <Badge
+              variant="outline"
+              className="mb-4 text-secondary border-secondary/20"
+            >
               Our Portfolio
             </Badge>
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-primary">
               Featured Projects
             </h1>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Explore our collection of completed projects that showcase our expertise, 
-              quality craftsmanship, and commitment to excellence in construction.
+              Explore our collection of completed projects that showcase our
+              expertise, quality craftsmanship, and commitment to excellence in
+              construction.
             </p>
           </motion.div>
         </div>
@@ -45,7 +48,8 @@ function ProjectsListingPage() {
                 Projects Coming Soon
               </h3>
               <p className="text-gray-600">
-                We're preparing our project showcase. Check back soon to see our amazing work!
+                We're preparing our project showcase. Check back soon to see our
+                amazing work!
               </p>
             </div>
           ) : (
@@ -56,54 +60,56 @@ function ProjectsListingPage() {
               animate="animate"
             >
               {projects.map((project) => (
-                <motion.div key={project.slug} variants={fadeInUp}>
-                  
-                    <Card className="h-full bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group border-0 shadow-lg overflow-hidden">
-                      <div className="relative overflow-hidden">
-                        <img
-                          src={project.thumbnail}
-                          alt={project.title}
-                          className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                        {project.category && (
-                          <div className="absolute top-4 left-4">
-                            <Badge className="bg-secondary text-white">
-                              {project.category}
-                            </Badge>
-                          </div>
-                        )}
+                <motion.div
+                  key={project.slug}
+                  variants={fadeInUp}
+                  className="group relative overflow-hidden rounded-xl bg-slate-200 aspect-[4/5]"
+                >
+                  <Link to={project.slug} className="block h-full">
+                    {/* Background Image */}
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                      style={{ backgroundImage: `url(${project.thumbnail})` }}
+                    />
+
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
+
+                    {/* Category Badge */}
+                    {project.category && (
+                      <div className="absolute top-4 right-4">
+                        <span className="text-white text-[10px] font-black uppercase px-3 py-1 rounded-full bg-secondary">
+                          {project.category}
+                        </span>
                       </div>
-                      
-                      <CardContent className="p-6">
-                        <h3 className="text-xl font-semibold text-primary mb-3 group-hover:text-secondary transition-colors duration-300">
-                          {project.title}
-                        </h3>
-                        
-                        <p className="text-gray-600 mb-4 leading-relaxed">
-                          {project.description}
-                        </p>
-                        
-                        <div className="flex flex-col space-y-2 text-sm text-gray-500">
-                          <div className="flex items-center">
-                            <Calendar className="h-4 w-4 mr-2" />
-                            {new Date(project.date).toLocaleDateString('en-US', {
-                              year: 'numeric',
-                              month: 'long'
-                            })}
-                          </div>
-                          
-                          {project.location && (
-                            <div className="flex items-center">
-                              <MapPin className="h-4 w-4 mr-2" />
-                              {project.location}
-                            </div>
-                          )}
-                          <Link to={project.slug} >Read more</Link>
+                    )}
+
+                    {/* Content */}
+                    <div className="absolute bottom-0 p-6 md:p-8 w-full">
+                      <div className="flex items-center gap-2 mb-2 text-secondary text-xs font-bold uppercase tracking-widest">
+                        <Calendar className="h-3 w-3" />
+                        {new Date(project.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                        })}
+                      </div>
+
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                        {project.title}
+                      </h3>
+
+                      <p className="text-slate-300 text-sm mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {project.description}
+                      </p>
+
+                      {project.location && (
+                        <div className="flex items-center gap-2 text-slate-300 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <MapPin className="h-3 w-3" />
+                          {project.location}
                         </div>
-                        
-                        
-                      </CardContent>
-                    </Card>
+                      )}
+                    </div>
+                  </Link>
                 </motion.div>
               ))}
             </motion.div>
@@ -111,8 +117,8 @@ function ProjectsListingPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
-const ProjectsPage = withPageTransition(ProjectsListingPage)
-export default ProjectsPage
+const ProjectsPage = withPageTransition(ProjectsListingPage);
+export default ProjectsPage;
