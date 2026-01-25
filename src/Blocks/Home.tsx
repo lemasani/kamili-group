@@ -13,6 +13,7 @@ import {
   Wrench,
   Factory,
   House,
+  Cross,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -129,7 +130,7 @@ const whyChooseUs = [
       "Deep technical knowledge across diverse engineering disciplines.",
   },
   {
-    icon: "health_and_safety",
+    icon: Cross,
     title: "Safety First",
     description:
       "Rigorous adherence to international safety protocols and standards.",
@@ -592,14 +593,14 @@ function Home() {
                 {whyChooseUs.map((item, index) => (
                   <div
                     key={index}
-                    className="bg-white/5 p-5 md:p-6 rounded-lg border border-white/10 hover:border-primary transition-colors"
+                    className="bg-white/5 p-5 md:p-6 rounded-lg border border-white/10 hover:border-secondary transition-colors"
                   >
                     {typeof item.icon === "string" ? (
-                      <span className="material-symbols-outlined text-primary mb-4 block text-3xl md:text-4xl">
+                      <span className="material-symbols-outlined text-secondary mb-4 block text-3xl md:text-4xl">
                         {item.icon}
                       </span>
                     ) : (
-                      <item.icon className="text-primary mb-4 size-8 md:size-10" />
+                      <item.icon className="text-secondary mb-4 size-8 md:size-10" />
                     )}
                     <h3 className="text-base md:text-lg font-bold mb-2">
                       {item.title}
@@ -618,7 +619,7 @@ function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <span className="text-primary text-sm font-bold uppercase tracking-widest">
+              <span className="text-secondary text-sm font-bold uppercase tracking-widest">
                 Why Partner With Us?
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight">
@@ -645,7 +646,7 @@ function Home() {
                     className="size-10 md:size-12 rounded-full border-2 border-slate-900 bg-slate-300 bg-cover"
                     style={{ backgroundImage: `url(${BlueCoastImage1})` }}
                   />
-                </div>
+                </div>primary
                 <div>
                   <p className="text-sm font-bold">
                     Trusted by over 50+ partners
