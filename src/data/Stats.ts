@@ -1,32 +1,32 @@
-import { Building, Users, Award, TrendingUp } from "lucide-react";
+import { Building, Users, Award, Shield } from "lucide-react";
 
 export const Stats = [
   {
     icon: Building,
-    value: 150,
+    value: 250,
     suffix: "+",
-    label: "Projects Completed",
-    description: "Successfully delivered projects across East Africa"
+    label: "Projects Done",
+    description: "Successfully delivered projects across East Africa",
   },
   {
     icon: Users,
     value: 50,
     suffix: "+",
-    label: "Happy Clients",
-    description: "Satisfied clients who trust our expertise"
+    label: "Expert Engineers",
+    description: "Skilled professionals dedicated to excellence",
   },
   {
     icon: Award,
     value: 15,
     suffix: "+",
     label: "Years Experience",
-    description: "Proven track record in construction industry"
+    description: "Proven track record in construction industry",
   },
   {
-    icon: TrendingUp,
-    value: 98,
+    icon: Shield,
+    value: 100,
     suffix: "%",
-    label: "Success Rate",
-    description: "Projects completed on time and within budget"
-  }
+    label: "Safety Record",
+    description: "Certified safety standards across all sites",
+  },
 ];

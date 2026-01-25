@@ -1,52 +1,65 @@
-import { 
-  Users, 
-  Shield,
-  Zap,
-  CheckCircle,
-} from 'lucide-react';
-
+import { Eye, Shield, Clock, Zap } from "lucide-react";
 
 export const whyChooseUsData = [
   {
+    icon: Eye,
+    title: "Transparency",
+    description:
+      "Real-time reporting and clear communication throughout the project lifecycle.",
+  },
+  {
     icon: Shield,
-    title: "Quality Assurance",
-    description: "We maintain the highest standards of quality in every project we undertake."
+    title: "Expertise",
+    description:
+      "Deep technical knowledge across diverse engineering disciplines.",
   },
   {
     icon: Zap,
+    title: "Safety First",
+    description:
+      "Rigorous adherence to international safety protocols and standards.",
+  },
+  {
+    icon: Clock,
     title: "Timely Delivery",
-    description: "Our efficient project management ensures on-time completion without compromising quality."
+    description:
+      "Precision scheduling to ensure projects are completed on time.",
   },
-  {
-    icon: Users,
-    title: "Expert Team",
-    description: "Our skilled professionals bring years of experience and expertise to every project."
-  },
-  {
-    icon: CheckCircle,
-    title: "Customer Satisfaction",
-    description: "We prioritize client satisfaction and maintain long-term relationships through excellent service."
-  }
 ];
 
 export const homeTestimonials = [
   {
-    name: "John Mwangi",
-    position: "CEO, TechCorp Ltd",
-    content: "Kamili Group delivered our office complex on time and exceeded our expectations. Their attention to detail is remarkable.",
-    rating: 5
+    name: "Adam Mwinyi",
+    position: "CEO, Horizon Logistics",
+    content:
+      "Kamili Group delivered our headquarters two weeks ahead of schedule. Their attention to detail in the steel fabrication was world-class.",
+    rating: 5,
   },
   {
-    name: "Sarah Ahmed",
-    position: "Homeowner",
-    content: "They built our dream home with such professionalism. The quality of work is outstanding and the team was very responsive.",
-    rating: 5
+    name: "Sophia Juma",
+    position: "Director, National Heritage Board",
+    content:
+      "The renovation of our colonial-era facility required sensitive handling. Kamili's team respected the history while modernizing the systems perfectly.",
+    rating: 5,
   },
   {
-    name: "Michael Johnson",
+    name: "Michael Kimario",
     position: "Property Developer",
-    content: "We've worked with Kamili Group on multiple projects. Their reliability and quality make them our go-to construction partner.",
-    rating: 5
-  }
+    content:
+      "We've partnered with Kamili Group on multiple projects. Their reliability and commitment to quality make them our go-to construction partner.",
+    rating: 5,
+  },
 ];
 
+export const aboutFeatures = [
+  "Certified safety standards across all sites.",
+  "Sustainable building materials and practices.",
+  "Advanced 3D modeling and structural simulation.",
+];
+
+export const heroStats = [
+  { value: "15+", label: "Years Experience" },
+  { value: "250+", label: "Projects Done" },
+  { value: "50+", label: "Expert Engineers" },
+  { value: "100%", label: "Safety Record" },
+];
